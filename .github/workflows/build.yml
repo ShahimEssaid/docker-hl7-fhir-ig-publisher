@@ -30,7 +30,7 @@ jobs:
           LATEST="$(curl "https://api.github.com/repos/hl7/fhir-ig-publisher/releases/latest" | jq -c '[.tag_name]')"
           echo ::set-output name=latest::"LATEST"
           
-          TO_BUILD="$(jq -c --argjson latest "$LATEST" '[ .build_versions | to_entries[] | select(.value.built == "no" ).key]' ./builds.json)"
+          TO_BUILD="$(jq -c --argjson latest "$LATEST" '[ .build_versions | to_entries[] | select(.value.built == "no" ).key] | .,$latest | flatten | unique' ./builds.json)"
           echo ::set-output name=build-versions::"$TO_BUILD"
 
 #          BUILD_VERSIONS=$(jq -c '[ .versions | to_entries[] | select(.value.build_versions == "no" ).key]' ./builds.json)
