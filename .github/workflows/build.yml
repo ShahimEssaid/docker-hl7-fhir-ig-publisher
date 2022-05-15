@@ -10,14 +10,15 @@ jobs:
   find-versions:
     runs-on: ubuntu-latest
     outputs:
-      to-build: ${{ steps.find-versions.outputs.to-build }}
-#      built-versions: ${{ steps.find-versions.outputs.built-versions }}
-#      not-built-versions: ${{ steps.find-versions.outputs.not-built-versions }}
-#      latest-version: ${{ steps.find-versions.outputs.latest-version }}
-#
-#      last-version: "1.1.117"
-#      latest-version-array: "[\"1.1.118\"]"
-#      build-versions-array: "[\"1.1.115\",\"1.1.116\"]"
+      latest: ${{ steps.find-versions.outputs.latest }}
+      to-build: ${{ steps.find-versions.outputs.build-versions }}
+    #      built-versions: ${{ steps.find-versions.outputs.built-versions }}
+    #      not-built-versions: ${{ steps.find-versions.outputs.not-built-versions }}
+    #      latest-version: ${{ steps.find-versions.outputs.latest-version }}
+    #
+    #      last-version: "1.1.117"
+    #      latest-version-array: "[\"1.1.118\"]"
+    #      build-versions-array: "[\"1.1.115\",\"1.1.116\"]"
     steps:
       - id: checkout
         uses: actions/checkout@v3
@@ -26,41 +27,47 @@ jobs:
         name: find
         run: |
           LATEST="$(curl "https://api.github.com/repos/hl7/fhir-ig-publisher/releases/latest" | jq -c '[.tag_name]')"
-          NOT_BUILT=$(jq -c '[ .versions | to_entries[] | select(.value.built == "no" ).key]' ./builds.json)
-          TO_BUILD="$(echo "$NOT_BUILT" | jq -c --argjson latest "$LATEST" '[.,$latest] | flatten | unique')"
-          echo ::set-output name=to-build::"$TO_BUILD"
+          echo ::set-output name=latest::"$TO_BUILD"
           
+          TO_BUILD="$(jq -c --argjson latest "$LATEST" '[ .build_versions | to_entries[] | select(.value.built == "no" ).key | .,$latest | flatten | unique]' ./builds.json)"
+          echo ::set-output name=build-versions::"$TO_BUILD"
 
-#          BUILT="$(jq -c '[ .versions | to_entries[] | select(.value.built == "yes" or .value.built == "failed").key]' ./builds.json)"
-#          echo ::set-output name=built-versions::"$BUILT"
-#          echo ::set-output name=not-built-versions::"$NOT_BUILT"
-#
-#          echo ::set-output name=latest-version::"$LATEST"
-#          echo TO BUILD "$BUILD"
+#          BUILD_VERSIONS=$(jq -c '[ .versions | to_entries[] | select(.value.build_versions == "no" ).key]' ./builds.json)
+#          TO_BUILD="$(echo "$NOT_BUILT" | jq -c --argjson latest "$LATEST" '[.,$latest] | flatten | unique')"
+
+
+
+      #          BUILT="$(jq -c '[ .versions | to_entries[] | select(.value.built == "yes" or .value.built == "failed").key]' ./builds.json)"
+      #          echo ::set-output name=built-versions::"$BUILT"
+      #          echo ::set-output name=not-built-versions::"$NOT_BUILT"
+      #
+      #          echo ::set-output name=latest-version::"$LATEST"
+      #          echo TO BUILD "$BUILD"
 
       - id: echo-outputs
         name: echo
         run: |
-          echo TO BUILD: '${{ steps.find-versions.outputs.to-build }}'
-#          echo NOT BUILT VERSIONS: '${{ steps.find-versions.outputs.not-built-versions }}'
-#          echo LATEST VERSION: '${{ steps.find-versions.outputs.latest-version }}'
-          
+          echo LATEST: '${{ steps.find-versions.outputs.latest }}'
+          echo BUILD VERSIONS: '${{ steps.find-versions.outputs.build-versions }}'
+          #          echo NOT BUILT VERSIONS: '${{ steps.find-versions.outputs.not-built-versions }}'
+          #          echo LATEST VERSION: '${{ steps.find-versions.outputs.latest-version }}'
+    
+    
 
-
-#  build-latest:
-#    needs: find-versions
-#    if: needs.find-versions.outputs.latest-version != needs.find-versions.outputs.last-version
-#    uses: ./.github/workflows/build-image.yaml
-#    with:
-#      versions: ${{ needs.find-versions.outputs.latest-version-array }}
-#      latest: true
-#
-#  build-versions:
-#    needs: [find-versions, build-latest]
-#    uses: ./.github/workflows/build-image.yaml
-#    with:
-#      versions: ${{ needs.find-versions.outputs.build-versions-array }}
-#      latest: false
+    #  build-latest:
+    #    needs: find-versions
+    #    if: needs.find-versions.outputs.latest-version != needs.find-versions.outputs.last-version
+    #    uses: ./.github/workflows/build-image.yaml
+    #    with:
+    #      versions: ${{ needs.find-versions.outputs.latest-version-array }}
+    #      latest: true
+    #
+    #  build-versions:
+    #    needs: [find-versions, build-latest]
+    #    uses: ./.github/workflows/build-image.yaml
+    #    with:
+    #      versions: ${{ needs.find-versions.outputs.build-versions-array }}
+    #      latest: false
 
 
     #  build:
