@@ -72,11 +72,6 @@ jobs:
           load: true
           tags: ${{ matrix.version }}-latest,${{ matrix.version }}
 
-          - id: test
-            run: echo testing
-
-          - id: push
-            run: echo pushing
 
       #  build-latest:
       #    needs: find-versions
