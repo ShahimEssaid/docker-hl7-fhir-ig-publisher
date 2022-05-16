@@ -79,7 +79,7 @@ jobs:
           set -x
           set +e
           env | sort
-          docker run --volume .sample-ig:/ig ${{ env.TEST_TAG }} -ini /ig/ig.ini
+          docker run --volume ./sample-ig:/ig ${{ env.TEST_TAG }} -ini /ig/ig.ini
           E=$?
           echo EXIT CODE: $E
 
