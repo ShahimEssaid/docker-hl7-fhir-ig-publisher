@@ -44,7 +44,8 @@ jobs:
       matrix:
         version: ${{ fromJSON(needs.find-versions.outputs.build-versions) }}
       max-parallel: 1
-
+    env:
+      TEST_TAG: user/app:test
     steps:
       - id: checkout
         uses: actions/checkout@v3
@@ -70,14 +71,14 @@ jobs:
         with:
           context: .
           load: true
-          tags: ${{ matrix.version }}-latest,${{ matrix.version }}
+          tags: ${{ env.TEST_TAG }}
           build-args: PUBLISHER_TAG=${{ matrix.version }}
 
       - name: Test with IG
         run: |
           set -x
           set +e
-          
+          env | sort
           docker run --volume .sample-ig:/ig ${{ env.TEST_TAG }} -ini /ig/ig.ini
           E=$?
           echo EXIT CODE: $E
