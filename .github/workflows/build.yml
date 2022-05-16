@@ -28,9 +28,9 @@ jobs:
         run: |
           set -x 
           LATEST="$(curl "https://api.github.com/repos/hl7/fhir-ig-publisher/releases/latest" | jq -c '.tag_name')"
-          echo ::set-output name=latest::"LATEST"
+          echo ::set-output name=latest::"$LATEST"
           
-          TO_BUILD="$(jq -c --argjson latest "$LATEST" '[.build_versions | to_entries[] | select(.value.built == "no" ).key | .,$latest | flatten | unique]' ./builds.json)"
+          TO_BUILD="$(jq -c --argjson latest "$LATEST" '[.build_versions | to_entries[] | select(.value.built == "no" ).key | .,$latest | unique]' ./builds.json)"
           echo ::set-output name=build-versions::"$TO_BUILD"
 
 #          BUILD_VERSIONS=$(jq -c '[ .versions | to_entries[] | select(.value.build_versions == "no" ).key]' ./builds.json)
@@ -49,7 +49,7 @@ jobs:
         name: echo
         run: |
           echo LATEST: '${{ steps.find-versions.outputs.latest }}'
-          echo BUILD VERSIONS: '${{ steps.find-versions.outputs.build-versions }}'
+          echo BUILD VERSIONS: '${{ steps.find-versions.outputs.latests }}'
           #          echo NOT BUILT VERSIONS: '${{ steps.find-versions.outputs.not-built-versions }}'
           #          echo LATEST VERSION: '${{ steps.find-versions.outputs.latest-version }}'
     
