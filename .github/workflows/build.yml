@@ -42,7 +42,7 @@ jobs:
       - find-versions
     strategy:
       matrix:
-        version: ${{ fromJSON(needs.find-versions.outputs.build-vesions) }}
+        version: ${{ fromJSON(needs.find-versions.outputs.build-versions) }}
       max-parallel: 1
 
     steps:
