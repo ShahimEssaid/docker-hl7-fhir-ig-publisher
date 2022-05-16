@@ -70,9 +70,7 @@ jobs:
         with:
           context: .
           load: true
-          tags:
-            - ${{ matrix.version }}-latest
-            - ${{ matrix.version }}
+          tags: ${{ matrix.version }}-latest,${{ matrix.version }}
           build-args:
             - PUBLISHER_TAG=${{ matrix.version }}
 
