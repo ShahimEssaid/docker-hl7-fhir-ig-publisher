@@ -71,8 +71,7 @@ jobs:
           context: .
           load: true
           tags: ${{ matrix.version }}-latest,${{ matrix.version }}
-          build-args:
-            - PUBLISHER_TAG=${{ matrix.version }}
+          build-args: PUBLISHER_TAG=${{ matrix.version }}
 
 
       #  build-latest:
