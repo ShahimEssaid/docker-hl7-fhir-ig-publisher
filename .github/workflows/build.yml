@@ -75,7 +75,12 @@ jobs:
 
       - name: Test with IG
         run: |
-          docker run --volume .sample-ig:/ig  -ini /ig/ig.ini
+          set -x
+          set +e
+          
+          docker run --volume .sample-ig:/ig ${{ matrix.version }} -ini /ig/ig.ini
+          E=$?
+          echo EXIT CODE: $E
 
 
       #  build-latest:
