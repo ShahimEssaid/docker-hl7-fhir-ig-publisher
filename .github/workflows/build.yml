@@ -81,7 +81,7 @@ jobs:
           env | sort
           WS=${{ env.GITHUB_WORKSPACE }}
           TAG=${{ env.TEST_TAG }}
-          docker run --volume "$WS"/sample-ig:/ig "$TAG" -ig /ig/ig.ini
+          docker run --volume "$GITHUB_WORKSPACE"/sample-ig:/ig "$TEST_TAG" -ig /ig/ig.ini
           E=$?
           echo EXIT CODE: $E
 
