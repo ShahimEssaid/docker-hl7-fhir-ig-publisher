@@ -79,7 +79,9 @@ jobs:
           set -x
           set +e
           env | sort
-          docker run --volume ${{ env.GITHUB_WORKSPACE }}/sample-ig:/ig ${{ env.TEST_TAG }} -ig /ig/ig.ini
+          WS=${{ env.GITHUB_WORKSPACE }}
+          TAG=${{ env.TEST_TAG }}
+          docker run --volume "$WS"/sample-ig:/ig "$TAG" -ig /ig/ig.ini
           E=$?
           echo EXIT CODE: $E
 
