@@ -11,14 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       latest: ${{ steps.find-versions.outputs.latest }}
-      to-build: ${{ steps.find-versions.outputs.build-versions }}
-    #      built-versions: ${{ steps.find-versions.outputs.built-versions }}
-    #      not-built-versions: ${{ steps.find-versions.outputs.not-built-versions }}
-    #      latest-version: ${{ steps.find-versions.outputs.latest-version }}
-    #
-    #      last-version: "1.1.117"
-    #      latest-version-array: "[\"1.1.118\"]"
-    #      build-versions-array: "[\"1.1.115\",\"1.1.116\"]"
+      build-versions: ${{ steps.find-versions.outputs.build-versions }}
     steps:
       - id: checkout
         uses: actions/checkout@v3
@@ -33,18 +26,6 @@ jobs:
           TO_BUILD="$(jq -c --argjson latest "$LATEST" '.build_versions | to_entries[] | select(.value.built == "no" ).key | [.,$latest] | unique' ./builds.json)"
           echo ::set-output name=build-versions::"$TO_BUILD"
 
-#          BUILD_VERSIONS=$(jq -c '[ .versions | to_entries[] | select(.value.build_versions == "no" ).key]' ./builds.json)
-#          TO_BUILD="$(echo "$NOT_BUILT" | jq -c --argjson latest "$LATEST" '[.,$latest] | flatten | unique')"
-
-
-
-      #          BUILT="$(jq -c '[ .versions | to_entries[] | select(.value.built == "yes" or .value.built == "failed").key]' ./builds.json)"
-      #          echo ::set-output name=built-versions::"$BUILT"
-      #          echo ::set-output name=not-built-versions::"$NOT_BUILT"
-      #
-      #          echo ::set-output name=latest-version::"$LATEST"
-      #          echo TO BUILD "$BUILD"
-
       - id: echo-outputs
         name: echo
         run: |
@@ -54,6 +35,25 @@ jobs:
           #          echo LATEST VERSION: '${{ steps.find-versions.outputs.latest-version }}'
     
     
+  build:
+    name: Build the image.
+    runs-on: ubuntu-latest
+    needs:
+      - find-versions
+    strategy:
+      matrix:
+        version: ${{ fromJSON(needs.find-versions) }}
+      max-parallel: 1
+
+    steps:
+      - id: build
+        run: echo building Docker image with version ${{ matrix.version }}
+
+      - id: test
+        run: echo testing
+
+      - id: push
+        run: echo pushing
 
     #  build-latest:
     #    needs: find-versions
