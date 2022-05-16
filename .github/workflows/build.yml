@@ -62,10 +62,6 @@ jobs:
           username: ${{ secrets.DH_USERNAME }}
           password: ${{ secrets.DH_TOKEN }}
 
-      - name: env
-        run: |
-          env | sort
-
       - name: Build and export to Docker
         uses: docker/build-push-action@v3
         with:
@@ -77,6 +73,21 @@ jobs:
       - name: Test with IG
         run: |
           docker run --volume "$GITHUB_WORKSPACE"/sample-ig:/ig "$TEST_TAG" -ig /ig/ig.ini
+
+      - name: Timestamp
+        id: timestamp
+        run: |
+          echo ::set-output name=timestamp::$(date "+%Y%m%d_%H%M%S")
+
+      -
+        name: Build and push
+        uses: docker/build-push-action@v3
+        with:
+          context: .
+          push: true
+          tags: |
+            ${{ secrets.DH_USERNAME }}/${{ secrets.DH_REPOSITORY }}:${{ matrix.version }}-latest
+            ${{ secrets.DH_USERNAME }}/${{ secrets.DH_REPOSITORY }}:${{ matrix.version }}-${{steps.timestamp.outputs.timestamp}}
 
 
       #  build-latest:
