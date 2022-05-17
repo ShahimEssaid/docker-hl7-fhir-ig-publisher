@@ -69,33 +69,33 @@ jobs:
           username: ${{ secrets.DH_USERNAME }}
           password: ${{ secrets.DH_TOKEN }}
 
-#      - name: Build and export to Docker
-#        uses: docker/build-push-action@v3
-#        with:
-#          context: .
-#          load: true
-#          tags: ${{ env.TEST_TAG }}
-#          build-args: PUBLISHER_TAG=${{ matrix.version }}
-#
-#      - name: Test with IG
-#        run: |
-#          docker run --volume "$GITHUB_WORKSPACE"/sample-ig:/ig "$TEST_TAG" -ig /ig/ig.ini
-#
-#      - name: Timestamp
-#        id: timestamp
-#        run: |
-#          echo ::set-output name=timestamp::$(date "+%Y%m%d_%H%M%S")
-#
-#      -
-#        name: Build and push
-#        uses: docker/build-push-action@v3
-#        with:
-#          context: .
-#          push: true
-#          build-args: PUBLISHER_TAG=${{ matrix.version }}
-#          tags: |
-#            ${{ secrets.DH_USERNAME }}/${{ secrets.DH_REPOSITORY }}:${{ matrix.version }}-latest
-#            ${{ secrets.DH_USERNAME }}/${{ secrets.DH_REPOSITORY }}:${{ matrix.version }}-${{steps.timestamp.outputs.timestamp}}
+      - name: Build and export to Docker
+        uses: docker/build-push-action@v3
+        with:
+          context: .
+          load: true
+          tags: ${{ env.TEST_TAG }}
+          build-args: PUBLISHER_TAG=${{ matrix.version }}
+
+      - name: Test with IG
+        run: |
+          docker run --volume "$GITHUB_WORKSPACE"/sample-ig:/ig "$TEST_TAG" -ig /ig/ig.ini
+
+      - name: Timestamp
+        id: timestamp
+        run: |
+          echo ::set-output name=timestamp::$(date "+%Y%m%d_%H%M%S")
+
+      -
+        name: Build and push
+        uses: docker/build-push-action@v3
+        with:
+          context: .
+          push: true
+          build-args: PUBLISHER_TAG=${{ matrix.version }}
+          tags: |
+            ${{ secrets.DH_USERNAME }}/${{ secrets.DH_REPOSITORY }}:${{ matrix.version }}-latest
+            ${{ secrets.DH_USERNAME }}/${{ secrets.DH_REPOSITORY }}:${{ matrix.version }}-${{steps.timestamp.outputs.timestamp}}
 
       -
         name: Update builds.json
