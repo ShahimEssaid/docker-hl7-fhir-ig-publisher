@@ -105,7 +105,7 @@ jobs:
           context: .
           push: true
           build-args: PUBLISHER_TAG=${{ matrix.version }}
-          tags: ${{ steps.tt.outputs.tags}}
+          tags: sessaid/ig-publisher:testing
 
       -
         name: Update builds.json
