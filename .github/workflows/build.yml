@@ -45,12 +45,15 @@ jobs:
     strategy:
       matrix:
         version: ${{ fromJSON(needs.find-versions.outputs.build-versions) }}
+      fail-fast: false
       max-parallel: 1
     env:
       TEST_TAG: user/app:test
     steps:
       - id: checkout
         uses: actions/checkout@v3
+        with:
+          token: ${{secrets.GITHUB_TOKEN}}
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v2
