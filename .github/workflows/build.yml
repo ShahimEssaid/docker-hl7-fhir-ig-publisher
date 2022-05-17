@@ -105,7 +105,7 @@ jobs:
           git config --global user.name 'Shahim Essaid Workflow'
           git config --global user.email 'shahim@essaid.com'
           git commit -am "Docker built workflow."
-          ll -la
+          ls -la
           cat .git/config
           
         
