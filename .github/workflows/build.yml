@@ -103,7 +103,7 @@ jobs:
       - name: catch exit 1
         if: failure()
         run: |
-          echo failure() ran
+          echo 'failure() ran'
 
 #      - name: Build and export to Docker
 #        uses: docker/build-push-action@v3
