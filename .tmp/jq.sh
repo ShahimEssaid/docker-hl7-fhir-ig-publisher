@@ -17,4 +17,17 @@
 #
 #echo "[\"1.1.116\",\"1.1.117\"]"  | jq 'contains(["1.1.1176"])'
 
-jq -c '[ .versions | to_entries[] | select(.value.built == "yes" or .value.built == "failed").key]' ../builds.json
+#jq -c '[ .versions | to_entries[] | select(.value.built == "yes" or .value.built == "failed").key]' ../builds.json
+
+
+#  update the builds.json file wip
+jq --arg version "$"  '
+. as $root
+| .build_versions
+| if has($version)
+  then
+    ( $root | .build_versions[$version]["built"] |= "yes" )
+  else
+    ( $root | .build_versions[$version] |= {"built": "yes"})
+  end
+' ../builds.json
