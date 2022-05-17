@@ -3,8 +3,8 @@ name: IG Publisher Docker Image CI
 on:
   push:
     branches: [ main ]
-  pull_request:
-    branches: [ main ]
+  schedule:
+    - cron: '0 2 * * *'
 
 concurrency: build
 
@@ -105,54 +105,67 @@ jobs:
         run: |
           echo 'failure() ran'
 
-#      - name: Build and export to Docker
-#        uses: docker/build-push-action@v3
-#        with:
-#          context: .
-#          load: true
-#          tags: ${{ env.TEST_TAG }}
-#          build-args: PUBLISHER_TAG=${{ matrix.version }}
-#
-#      - name: Test with IG
-#        run: |
-#          docker run --volume "$GITHUB_WORKSPACE"/sample-ig:/ig "$TEST_TAG" -ig /ig/ig.ini
-#
-#      -
-#        name: Build and push
-#        uses: docker/build-push-action@v3
-#        with:
-#          context: .
-#          push: true
-#          build-args: PUBLISHER_TAG=${{ matrix.version }}
-#          tags: ${{ steps.tt.outputs.tags}}
+      - name: Build and export to Docker
+        uses: docker/build-push-action@v3
+        with:
+          context: .
+          load: true
+          tags: ${{ env.TEST_TAG }}
+          build-args: PUBLISHER_TAG=${{ matrix.version }}
 
-#      - name: Set success flag
-#        run: |
-#          echo '::set-output name=tags::'"$TAGS"
+      - name: Test with IG
+        run: |
+          docker run --volume "$GITHUB_WORKSPACE"/sample-ig:/ig "$TEST_TAG" -ig /ig/ig.ini
 
+      -
+        name: Build and push
+        uses: docker/build-push-action@v3
+        with:
+          context: .
+          push: true
+          build-args: PUBLISHER_TAG=${{ matrix.version }}
+          tags: ${{ steps.tt.outputs.tags}}
 
-#      -
-#        name: Update builds.json
-#        run: |
-#          set -x
-#          TMP_BUILDS=$(mktemp /tmp/builds.json.XXXXX)
-#          jq --arg version "${{ matrix.version }}"  '
-#              . as $root |
-#              .build_versions |
-#              if has($version) then ( $root | .build_versions[$version]["built"] |= "yes" ) else ( $root | .build_versions[$version] |= {"built": "yes"}) end
-#              ' builds.json > "$TMP_BUILDS"
-#          mv "$TMP_BUILDS" builds.json
-#
-#          git diff
-#          git config --global user.name 'Shahim Essaid Workflow'
-#          git config --global user.email 'shahim@essaid.com'
-#          git commit -am "Docker built workflow."
-#
-#          ls -la
-#          cat .git/config
-#
-#          git remote set-url origin "https://github.com/ShahimEssaid/docker-hl7-fhir-ig-publisher"
-#          git push
+      -
+        name: Update builds.json succeeded
+        run: |
+          set -x
+          TMP_BUILDS=$(mktemp /tmp/builds.json.XXXXX)
+          jq --arg version "${{ matrix.version }}"  '
+              . as $root |
+              .build_versions |
+              if has($version) then ( $root | .build_versions[$version]["built"] |= "yes" ) else ( $root | .build_versions[$version] |= {"built": "yes"}) end
+              ' builds.json > "$TMP_BUILDS"
+          mv "$TMP_BUILDS" builds.json
+
+          git diff
+          git config --global user.name 'Shahim Essaid Workflow'
+          git config --global user.email 'shahim@essaid.com'
+          git commit -am "Actions build succeeded"
+          cat .git/config
+          git remote set-url origin "https://github.com/ShahimEssaid/docker-hl7-fhir-ig-publisher"
+          git push
+
+      -
+        name: Update builds.json failed
+        if: failure()
+        run: |
+          set -x
+          TMP_BUILDS=$(mktemp /tmp/builds.json.XXXXX)
+          jq --arg version "${{ matrix.version }}"  '
+              . as $root |
+              .build_versions |
+              if has($version) then ( $root | .build_versions[$version]["built"] |= "failed" ) else ( $root | .build_versions[$version] |= {"built": "failed"}) end
+              ' builds.json > "$TMP_BUILDS"
+          mv "$TMP_BUILDS" builds.json
+
+          git diff
+          git config --global user.name 'Shahim Essaid Workflow'
+          git config --global user.email 'shahim@essaid.com'
+          git commit -am "Actions build failed"
+          cat .git/config
+          git remote set-url origin "https://github.com/ShahimEssaid/docker-hl7-fhir-ig-publisher"
+          git push
 
       #  build-latest:
       #    needs: find-versions
