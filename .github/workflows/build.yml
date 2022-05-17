@@ -6,6 +6,8 @@ on:
   pull_request:
     branches: [ main ]
 
+concurrency: build
+
 jobs:
   find-versions:
     runs-on: ubuntu-latest
@@ -99,6 +101,11 @@ jobs:
           mv "$TMP_BUILDS" builds.json
           
           git diff
+          
+          git config --global user.name 'Shahim Essaid Workflow'
+          git config --global user.email 'shahim@essaid.com'
+          git commit -am "Docker built workflow."
+          git push
         
         
         
