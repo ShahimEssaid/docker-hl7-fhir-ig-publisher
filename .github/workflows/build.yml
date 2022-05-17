@@ -56,6 +56,17 @@ jobs:
     env:
       TEST_TAG: user/app:test
     steps:
+      - name: Timestamp and tags
+        id: tt
+        run: |
+          set -x
+          if [[ "${{ matrix.version }}" == "${{ needs.find-versions.outputs.latest }}" ]]; then
+            TAGS='["${{ matrix.version }}-latest", "${{ matrix.version }}-'$(date "+%Y%m%d_%H%M%S")'","latest"]'
+          else
+            TAGS='["${{ matrix.version }}-latest", "${{ matrix.version }}-'$(date "+%Y%m%d_%H%M%S")'"]'
+          fi
+          echo '::set-output name=tags::'"$TAGS"
+
       - id: checkout
         uses: actions/checkout@v3
         with:
@@ -86,17 +97,6 @@ jobs:
       - name: Test with IG
         run: |
           docker run --volume "$GITHUB_WORKSPACE"/sample-ig:/ig "$TEST_TAG" -ig /ig/ig.ini
-
-      - name: Timestamp and tags
-        id: tt
-        run: |
-          set -x
-          if [[ "${{ matrix.version }}" == "${{ needs.find-versions.outputs.latest }}" ]]; then
-            TAGS='["${{ matrix.version }}-latest", "${{ matrix.version }}-'$(date "+%Y%m%d_%H%M%S")'","latest"]'
-          else
-            TAGS='["${{ matrix.version }}-latest", "${{ matrix.version }}-'$(date "+%Y%m%d_%H%M%S")'"]'
-          fi
-          echo '::set-output name=tags::'"$TAGS"
 
       -
         name: Build and push
