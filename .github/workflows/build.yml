@@ -87,10 +87,16 @@ jobs:
         run: |
           docker run --volume "$GITHUB_WORKSPACE"/sample-ig:/ig "$TEST_TAG" -ig /ig/ig.ini
 
-      - name: Timestamp
-        id: timestamp
+      - name: Timestamp and tags
+        id: tt
         run: |
-          echo ::set-output name=timestamp::$(date "+%Y%m%d_%H%M%S")
+          set -x
+          if [[ "${{ matrix.version }}" == "${{ needs.find-versions.outputs.latest }}" ]]; then
+            TAGS='["${{ matrix.version }}-latest", "${{ matrix.version }}-'$(date "+%Y%m%d_%H%M%S")'","latest"]'
+          else
+            TAGS='["${{ matrix.version }}-latest", "${{ matrix.version }}-'$(date "+%Y%m%d_%H%M%S")'"]'
+          fi
+          echo '::set-output name=tags::'"$TAGS"
 
       -
         name: Build and push
@@ -99,9 +105,7 @@ jobs:
           context: .
           push: true
           build-args: PUBLISHER_TAG=${{ matrix.version }}
-          tags: |
-            ${{ secrets.DH_USERNAME }}/${{ secrets.DH_REPOSITORY }}:${{ matrix.version }}-latest
-            ${{ secrets.DH_USERNAME }}/${{ secrets.DH_REPOSITORY }}:${{ matrix.version }}-${{steps.timestamp.outputs.timestamp}}
+          tags: ${{ fromJson(steps.tt.outputs.tags)}}
 
       -
         name: Update builds.json
@@ -112,7 +116,6 @@ jobs:
           mv "$TMP_BUILDS" builds.json
           
           git diff
-          
           git config --global user.name 'Shahim Essaid Workflow'
           git config --global user.email 'shahim@essaid.com'
           git commit -am "Docker built workflow."
@@ -121,7 +124,7 @@ jobs:
           cat .git/config
           
           # git remote set-url origin "https://github.com/ShahimEssaid/docker-hl7-fhir-ig-publisher"
-          git push
+          # git push
           
         
         
