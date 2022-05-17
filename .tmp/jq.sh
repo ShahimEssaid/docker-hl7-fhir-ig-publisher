@@ -1,5 +1,16 @@
 # jq examples
 
+LATEST="$(curl "https://api.github.com/repos/hl7/fhir-ig-publisher/releases/latest" | jq -c '.tag_name')"
+echo LATEST $LATEST
+
+TO_BUILD="$(jq -c --argjson latest "$LATEST" '
+    [.build_versions
+    | if has($latest) then empty else $latest end,
+      (to_entries[] | select(.value.built != "yes" and .value.built != "failed").key)
+    ] | sort
+    ' ../builds.json)"
+echo TO BUILD: $TO_BUILD
+
 #jq '.' ../config.json
 
 #jq '.["latest"]["tags"]' ../config.json
@@ -21,13 +32,13 @@
 
 
 #  update the builds.json file wip
-jq --arg version "$"  '
-. as $root
-| .build_versions
-| if has($version)
-  then
-    ( $root | .build_versions[$version]["built"] |= "yes" )
-  else
-    ( $root | .build_versions[$version] |= {"built": "yes"})
-  end
-' ../builds.json
+#jq --arg version "$"  '
+#. as $root
+#| .build_versions
+#| if has($version)
+#  then
+#    ( $root | .build_versions[$version]["built"] |= "yes" )
+#  else
+#    ( $root | .build_versions[$version] |= {"built": "yes"})
+#  end
+#' ../builds.json
