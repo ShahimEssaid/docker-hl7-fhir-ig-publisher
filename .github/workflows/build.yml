@@ -105,8 +105,12 @@ jobs:
           git config --global user.name 'Shahim Essaid Workflow'
           git config --global user.email 'shahim@essaid.com'
           git commit -am "Docker built workflow."
+          
           ls -la
           cat .git/config
+          
+          git remote set-url origin "git@github.com:ShahimEssaid/docker-hl7-fhir-ig-publisher.git"
+          git push
           
         
         
