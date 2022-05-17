@@ -61,17 +61,17 @@ jobs:
         run: |
           set -x
           if [[ "${{ matrix.version }}" == "${{ needs.find-versions.outputs.latest }}" ]]; then
-            TAGS='"${{ matrix.version }}-latest","${{ matrix.version }}-'$(date "+%Y%m%d_%H%M%S")'","latest"'
+            TAGS='"sessaid/ig-publisher:${{ matrix.version }}-latest","sessaid/ig-publisher:${{ matrix.version }}-'$(date "+%Y%m%d_%H%M%S")'","sessaid/ig-publisher:latest"'
           else
-            TAGS='"${{ matrix.version }}-latest","${{ matrix.version }}-'$(date "+%Y%m%d_%H%M%S")'"'
+            TAGS='"sessaid/ig-publisher:${{ matrix.version }}-latest","sessaid/ig-publisher:${{ matrix.version }}-'$(date "+%Y%m%d_%H%M%S")'"'
           fi
           echo '::set-output name=tags::'"$TAGS"
 
       - id: checkout
         uses: actions/checkout@v3
-#        with:
-#          repository: ShahimEssaid/docker-hl7-fhir-ig-publisher
-#          token: ${{secrets.GH_TOKEN}}
+        with:
+          repository: ShahimEssaid/docker-hl7-fhir-ig-publisher
+          token: ${{secrets.GH_TOKEN}}
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v2
