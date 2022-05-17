@@ -62,9 +62,9 @@ jobs:
         run: |
           set -x
           if [[ "${{ matrix.version }}" == "${{ needs.find-versions.outputs.latest }}" ]]; then
-            TAGS='${{ secrets.DH_REPOSITORY }}:${{ matrix.version }}-latest,${{ secrets.DH_REPOSITORY }}:${{ matrix.version }}-'$(date "+%Y%m%d_%H%M%S")',${{ secrets.DH_REPOSITORY }}:latest'
+            TAGS='${{ secrets.DH_USERNAME }}/${{ secrets.DH_REPOSITORY }}:${{ matrix.version }}-latest,${{ secrets.DH_USERNAME }}/${{ secrets.DH_REPOSITORY }}:${{ matrix.version }}-'$(date "+%Y%m%d_%H%M%S")',${{ secrets.DH_USERNAME }}/${{ secrets.DH_REPOSITORY }}:latest'
           else
-            TAGS='${{ secrets.DH_REPOSITORY }}:${{ matrix.version }}-latest,${{ secrets.DH_REPOSITORY }}:${{ matrix.version }}-'$(date "+%Y%m%d_%H%M%S")
+            TAGS='${{ secrets.DH_USERNAME }}/${{ secrets.DH_REPOSITORY }}:${{ matrix.version }}-latest,${{ secrets.DH_USERNAME }}/${{ secrets.DH_REPOSITORY }}:${{ matrix.version }}-'$(date "+%Y%m%d_%H%M%S")
           fi
           echo '::set-output name=tags::'"$TAGS"
 
@@ -105,7 +105,7 @@ jobs:
           context: .
           push: true
           build-args: PUBLISHER_TAG=${{ matrix.version }}
-          tags: sessaid/ig-publisher:testing
+          tags: ${{ steps.tt.outputs.tags}}
 
       -
         name: Update builds.json
