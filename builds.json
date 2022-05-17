@@ -1,6 +1,8 @@
 {
   "build_versions": {
-    "1.1.122": null,
+    "1.1.122": {
+      "built": "failed"
+    },
     "1.1.120": {
       "built": "yes"
     }
