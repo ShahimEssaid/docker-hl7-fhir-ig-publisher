@@ -112,7 +112,7 @@ jobs:
           ls -la
           cat .git/config
           
-          git remote set-url origin "https://github.com/ShahimEssaid/docker-hl7-fhir-ig-publisher.git"
+          git remote set-url origin "https://github.com/ShahimEssaid/docker-hl7-fhir-ig-publisher"
           git push
           
         
