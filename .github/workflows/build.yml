@@ -88,25 +88,6 @@ jobs:
           username: ${{ secrets.DH_USERNAME }}
           password: ${{ secrets.DH_TOKEN }}
 
-#      - name: exit 0
-#        run: |
-#          set -x
-#          exit 0
-#
-#      - name: exit 1
-#        run: |
-#          set -x
-#          exit 1
-#
-#      - name: after exit 1
-#        run: |
-#          echo after exit 1
-#
-#      - name: catch exit 1
-#        if: failure()
-#        run: |
-#          echo 'failure() ran'
-
       - name: Build and export to Docker
         uses: docker/build-push-action@v3
         with:
