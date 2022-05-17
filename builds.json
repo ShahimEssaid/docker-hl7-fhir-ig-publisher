@@ -1,16 +1,4 @@
 {
   "build_versions": {
-    "1.1.118": {
-      "built": "yes"
-    },
-    "1.1.117": {
-      "built": "yes"
-    },
-    "1.1.116": {
-      "built": "failed"
-    },
-    "1.1.120": {
-      "built": "yes"
-    }
   }
 }
