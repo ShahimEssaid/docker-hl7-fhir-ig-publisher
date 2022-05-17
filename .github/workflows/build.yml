@@ -22,6 +22,7 @@ jobs:
         name: find
         run: |
           set -x 
+          jq --version
           LATEST="$(curl "https://api.github.com/repos/hl7/fhir-ig-publisher/releases/latest" | jq -c '.tag_name')"
           echo ::set-output name=latest::"$LATEST"
           
@@ -61,9 +62,9 @@ jobs:
         run: |
           set -x
           if [[ "${{ matrix.version }}" == "${{ needs.find-versions.outputs.latest }}" ]]; then
-            TAGS='"sessaid/ig-publisher:${{ matrix.version }}-latest","sessaid/ig-publisher:${{ matrix.version }}-'$(date "+%Y%m%d_%H%M%S")'","sessaid/ig-publisher:latest"'
+            TAGS='"${{ secrets.DH_REPOSITORY }}:${{ matrix.version }}-latest","${{ secrets.DH_REPOSITORY }}:${{ matrix.version }}-'$(date "+%Y%m%d_%H%M%S")'","${{ secrets.DH_REPOSITORY }}:latest"'
           else
-            TAGS='"sessaid/ig-publisher:${{ matrix.version }}-latest","sessaid/ig-publisher:${{ matrix.version }}-'$(date "+%Y%m%d_%H%M%S")'"'
+            TAGS='"${{ secrets.DH_REPOSITORY }}:${{ matrix.version }}-latest","${{ secrets.DH_REPOSITORY }}:${{ matrix.version }}-'$(date "+%Y%m%d_%H%M%S")'"'
           fi
           echo '::set-output name=tags::'"$TAGS"
 
@@ -111,7 +112,11 @@ jobs:
         run: |
           set -x
           TMP_BUILDS=$(mktemp /tmp/builds.json.XXXXX)
-          jq --arg version "${{ matrix.version }}"  '. as $root | .build_versions | if has($version) and .$version != null then ( $root | .build_versions[$version]["built"] |= "yes" ) else ( $root | .build_versions[$version] |= {"built": "yes"}) end' builds.json > "$TMP_BUILDS"
+          jq --arg version "${{ matrix.version }}"  '
+              . as $root |
+              .build_versions |
+              if has($version) then ( $root | .build_versions[$version]["built"] |= "yes" ) else ( $root | .build_versions[$version] |= {"built": "yes"}) end
+              ' builds.json > "$TMP_BUILDS"
           mv "$TMP_BUILDS" builds.json
           
           git diff
@@ -122,8 +127,8 @@ jobs:
           ls -la
           cat .git/config
           
-           git remote set-url origin "https://github.com/ShahimEssaid/docker-hl7-fhir-ig-publisher"
-           git push
+          git remote set-url origin "https://github.com/ShahimEssaid/docker-hl7-fhir-ig-publisher"
+          git push
           
         
         
