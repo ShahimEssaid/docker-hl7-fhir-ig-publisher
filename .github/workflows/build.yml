@@ -86,26 +86,50 @@ jobs:
           username: ${{ secrets.DH_USERNAME }}
           password: ${{ secrets.DH_TOKEN }}
 
-      - name: Build and export to Docker
-        uses: docker/build-push-action@v3
-        with:
-          context: .
-          load: true
-          tags: ${{ env.TEST_TAG }}
-          build-args: PUBLISHER_TAG=${{ matrix.version }}
-
-      - name: Test with IG
+      - name: exit 0
         run: |
-          docker run --volume "$GITHUB_WORKSPACE"/sample-ig:/ig "$TEST_TAG" -ig /ig/ig.ini
+          set -x
+          exit 0
 
-      -
-        name: Build and push
-        uses: docker/build-push-action@v3
-        with:
-          context: .
-          push: true
-          build-args: PUBLISHER_TAG=${{ matrix.version }}
-          tags: ${{ steps.tt.outputs.tags}}
+      - name: exit 1
+        run: |
+          set -x
+          exit 1
+
+      - name: after exit 1
+        run: |
+          echo after exit 1
+
+      - name: catch exit 1
+        if: failure()
+        run: |
+          echo failure() ran
+
+#      - name: Build and export to Docker
+#        uses: docker/build-push-action@v3
+#        with:
+#          context: .
+#          load: true
+#          tags: ${{ env.TEST_TAG }}
+#          build-args: PUBLISHER_TAG=${{ matrix.version }}
+#
+#      - name: Test with IG
+#        run: |
+#          docker run --volume "$GITHUB_WORKSPACE"/sample-ig:/ig "$TEST_TAG" -ig /ig/ig.ini
+#
+#      -
+#        name: Build and push
+#        uses: docker/build-push-action@v3
+#        with:
+#          context: .
+#          push: true
+#          build-args: PUBLISHER_TAG=${{ matrix.version }}
+#          tags: ${{ steps.tt.outputs.tags}}
+
+#      - name: Set success flag
+#        run: |
+#          echo '::set-output name=tags::'"$TAGS"
+
 
 #      -
 #        name: Update builds.json
@@ -148,23 +172,23 @@ jobs:
 
       #  build:
 
-  build-succeeded:
-    name: Succeeded
-    needs: build
-    if: ${{ always() && needs.build.result=='success' }}
-    runs-on: ubuntu-latest
-    steps:
-      - run: |
-          echo SUCCEEDED
+#  build-succeeded:
+#    name: Succeeded
+#    needs: build
+#    if: ${{ always() && needs.build.result=='success' }}
+#    runs-on: ubuntu-latest
+#    steps:
+#      - run: |
+#          echo SUCCEEDED
 
-  build-failed:
-    name: Failed
-    needs: build
-    if: ${{ always() && needs.build.result=='failure' }}
-    runs-on: ubuntu-latest
-    steps:
-      - run: |
-          echo FAILED
+#  build-failed:
+#    name: Failed
+#    needs: build
+#    if: ${{ always() && needs.build.result=='failure' }}
+#    runs-on: ubuntu-latest
+#    steps:
+#      - run: |
+#          echo FAILED
   
         
         
