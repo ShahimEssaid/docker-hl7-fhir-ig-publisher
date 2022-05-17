@@ -93,7 +93,7 @@ jobs:
             ${{ secrets.DH_USERNAME }}/${{ secrets.DH_REPOSITORY }}:${{ matrix.version }}-${{steps.timestamp.outputs.timestamp}}
 
       -
-        name: Update builds
+        name: Update builds.json
         run: |
           set -x
           TMP_BUILDS=$(mktemp /tmp/builds.json.XXXXX)
@@ -105,7 +105,9 @@ jobs:
           git config --global user.name 'Shahim Essaid Workflow'
           git config --global user.email 'shahim@essaid.com'
           git commit -am "Docker built workflow."
-          git push
+          ll -la
+          cat .git/config
+          
         
         
         
