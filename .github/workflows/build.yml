@@ -107,32 +107,28 @@ jobs:
           build-args: PUBLISHER_TAG=${{ matrix.version }}
           tags: ${{ steps.tt.outputs.tags}}
 
-      -
-        name: Update builds.json
-        run: |
-          set -x
-          TMP_BUILDS=$(mktemp /tmp/builds.json.XXXXX)
-          jq --arg version "${{ matrix.version }}"  '
-              . as $root |
-              .build_versions |
-              if has($version) then ( $root | .build_versions[$version]["built"] |= "yes" ) else ( $root | .build_versions[$version] |= {"built": "yes"}) end
-              ' builds.json > "$TMP_BUILDS"
-          mv "$TMP_BUILDS" builds.json
-          
-          git diff
-          git config --global user.name 'Shahim Essaid Workflow'
-          git config --global user.email 'shahim@essaid.com'
-          git commit -am "Docker built workflow."
-          
-          ls -la
-          cat .git/config
-          
-          git remote set-url origin "https://github.com/ShahimEssaid/docker-hl7-fhir-ig-publisher"
-          git push
-          
-        
-        
-        
+#      -
+#        name: Update builds.json
+#        run: |
+#          set -x
+#          TMP_BUILDS=$(mktemp /tmp/builds.json.XXXXX)
+#          jq --arg version "${{ matrix.version }}"  '
+#              . as $root |
+#              .build_versions |
+#              if has($version) then ( $root | .build_versions[$version]["built"] |= "yes" ) else ( $root | .build_versions[$version] |= {"built": "yes"}) end
+#              ' builds.json > "$TMP_BUILDS"
+#          mv "$TMP_BUILDS" builds.json
+#
+#          git diff
+#          git config --global user.name 'Shahim Essaid Workflow'
+#          git config --global user.email 'shahim@essaid.com'
+#          git commit -am "Docker built workflow."
+#
+#          ls -la
+#          cat .git/config
+#
+#          git remote set-url origin "https://github.com/ShahimEssaid/docker-hl7-fhir-ig-publisher"
+#          git push
 
       #  build-latest:
       #    needs: find-versions
@@ -151,7 +147,30 @@ jobs:
 
 
       #  build:
-#    runs-on: ubuntu-latest
+
+  build-succeeded:
+    name: Succeeds
+    needs: build
+    if: ${{ always() && needs.build.result=='success' }}
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          echo SUCCEEDED
+
+  build-failed:
+    name: Succeeds
+    needs: build
+    if: ${{ always() && needs.build.result=='failure' }}
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          echo FAILED
+  
+        
+        
+        
+
+        #    runs-on: ubuntu-latest
 #    steps:
 #      - name: Publisher's latest version
 #        run: |
