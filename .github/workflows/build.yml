@@ -4,7 +4,7 @@ on:
   push:
     branches: [ main ]
   schedule:
-    - cron: '0 2 * * *'
+    - cron: '0 20 * * *'
 
 concurrency: build
 
@@ -34,15 +34,6 @@ jobs:
               ] | sort
           ' ./builds.json)"
           echo ::set-output name=build-versions::"$TO_BUILD"
-
-      - id: echo-outputs
-        name: echo
-        run: |
-          echo LATEST: '${{ steps.find-versions.outputs.latest }}'
-          echo BUILD VERSIONS: '${{ steps.find-versions.outputs.build-versions }}'
-          #          echo NOT BUILT VERSIONS: '${{ steps.find-versions.outputs.not-built-versions }}'
-          #          echo LATEST VERSION: '${{ steps.find-versions.outputs.latest-version }}'
-  
 
   build:
     name: Build the image.
@@ -149,23 +140,3 @@ jobs:
           cat .git/config
           git remote set-url origin "https://github.com/ShahimEssaid/docker-hl7-fhir-ig-publisher"
           git push
-
-
-
-#  build-succeeded:
-#    name: Succeeded
-#    needs: build
-#    if: ${{ always() && needs.build.result=='success' }}
-#    runs-on: ubuntu-latest
-#    steps:
-#      - run: |
-#          echo SUCCEEDED
-
-#  build-failed:
-#    name: Failed
-#    needs: build
-#    if: ${{ always() && needs.build.result=='failure' }}
-#    runs-on: ubuntu-latest
-#    steps:
-#      - run: |
-#          echo FAILED
