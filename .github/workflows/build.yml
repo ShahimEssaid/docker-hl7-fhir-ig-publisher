@@ -66,6 +66,13 @@ jobs:
 #          repository: ShahimEssaid/docker-hl7-fhir-ig-publisher
 #          token: ${{secrets.GH_TOKEN}}
 #          ref: main
+      - name: user ids
+        run: |
+          echo =============== USER INFO ===================
+          echo ============= ID:  $(id)
+          echo ============= ls -la:
+          ls -la
+          exit 1
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v2
@@ -89,6 +96,7 @@ jobs:
 
       - name: Test with IG
         run: |
+
           docker run  -u 1000 --volume "$GITHUB_WORKSPACE"/sample-ig:/ig "$TEST_TAG" -ig /ig/ig.ini
 
       -
