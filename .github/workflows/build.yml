@@ -19,6 +19,16 @@ jobs:
       - id: checkout
         uses: actions/checkout@v3
 
+      - name: user ids
+        run: |
+          echo =============== USER INFO ===================
+          echo ============= ID:  $(id)
+          echo ============= ls -la:
+          ls -la
+          echo ===========  cat /etc/passwd
+          cat /etc/passwd
+          exit 1
+
       - id: find-versions
         name: find
         run: |
@@ -66,15 +76,7 @@ jobs:
 #          repository: ShahimEssaid/docker-hl7-fhir-ig-publisher
 #          token: ${{secrets.GH_TOKEN}}
 #          ref: main
-      - name: user ids
-        run: |
-          echo =============== USER INFO ===================
-          echo ============= ID:  $(id)
-          echo ============= ls -la:
-          ls -la
-          echo ===========  cat /etc/passwd
-          cat /etc/passwd
-          exit 1
+
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v2
