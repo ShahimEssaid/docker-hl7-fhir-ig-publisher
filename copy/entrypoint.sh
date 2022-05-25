@@ -1,22 +1,13 @@
 #!/usr/bin/env bash
 set -x
 
-id
-pwd
-cd
-pwd
-cd -
-pwd
-
-
-# Need to run as a non root user and with a home directory.
-
-# pick a non root uid
+# must be ran as root and will switch to the non root uid based on ig's root folder owner
 if [[ $(id -u) == 0 ]]; then
   # use the uid of the IG's root directory
   USERID=$(stat -c '%u' /ig)
 else
-  echo Exiting due to non root user
+  echo 'Exiting due to non root user. Run the container witout a user (i.e. as root).'
+  echo 'The build will be done with the same user as the user owning the ig root directory.'
   exit 1
 fi
 
@@ -29,19 +20,3 @@ fi
 NAME=$(id -nu $USERID)
 
 su $NAME -c "/app/build-ig.sh $*"
-
-#if [[ $(id -u) == 0 ]]; then
-#  echo user is root in container but we need non root user so we use the user from the volume for permission purposes
-#  USERID=$(stat -c '%u' /ig)
-#  usermod -u $USERID node
-#  chown -R node /home/node
-#  ls -la /home/node
-#  su node -c "/app/build-ig.sh $*"
-#else
-#  id
-#  cd
-#  pwd
-#  cd /ig
-#
-#  /app/build-ig.sh "$@"
-#fi
