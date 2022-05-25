@@ -89,7 +89,7 @@ jobs:
 
       - name: Test with IG
         run: |
-          docker run --volume "$GITHUB_WORKSPACE"/sample-ig:/ig "$TEST_TAG" -ig /ig/ig.ini
+          docker run  -u 1000 --volume "$GITHUB_WORKSPACE"/sample-ig:/ig "$TEST_TAG" -ig /ig/ig.ini
 
       -
         name: Build and push
@@ -116,8 +116,7 @@ jobs:
           git config --global user.name 'Shahim Essaid Workflow'
           git config --global user.email 'shahim@essaid.com'
           git commit -am "Actions build succeeded -GHB"
-          cat .git/config
-          git remote set-url origin "https://github.com/ShahimEssaid/docker-hl7-fhir-ig-publisher"
+          #cat .git/config
           git push
 
       -
@@ -137,6 +136,5 @@ jobs:
           git config --global user.name 'Shahim Essaid Workflow'
           git config --global user.email 'shahim@essaid.com'
           git commit -am "Actions build failed -GHB"
-          cat .git/config
-          git remote set-url origin "https://github.com/ShahimEssaid/docker-hl7-fhir-ig-publisher"
+          #cat .git/config
           git push
