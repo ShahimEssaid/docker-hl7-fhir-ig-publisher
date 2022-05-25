@@ -20,5 +20,5 @@ RUN test -n "$PUBLISHER_TAG" \
 
 COPY entrypoint.sh /app/
 
-ENTRYPOINT ["java", "-jar", "/app/publisher.jar"]
+ENTRYPOINT [ "/app/entrypoint.sh"]
 #ENTRYPOINT ls -la
