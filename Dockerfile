@@ -4,6 +4,12 @@ ARG PUBLISHER_TAG
 
 WORKDIR /ig
 
+#RUN \
+#    apt-get update \
+#    && apt-get install sudo nano
+
+
+
 RUN \
     apt-get update \
     && apt-get install -y \
@@ -11,7 +17,14 @@ RUN \
     ruby-full build-essential \
     zlib1g-dev \
     jq \
+    sudo \
+    nano \
     && rm -rf /var/lib/apt/lists/*
+
+RUN \
+    echo "ALL ALL = (ALL) NOPASSWD: ALL" >> /etc/sudoers \
+    && cat /etc/sudoers \
+    && visudo -c
 
 RUN test -n "$PUBLISHER_TAG" \
     && gem install bundler jekyll \
