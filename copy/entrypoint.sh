@@ -2,6 +2,12 @@
 set -x
 
 id
+pwd
+cd
+pwd
+cd -
+pwd
+
 
 # Need to run as a non root user and with a home directory.
 
@@ -10,13 +16,14 @@ if [[ $(id -u) == 0 ]]; then
   # use the uid of the IG's root directory
   USERID=$(stat -c '%u' /ig)
 else
-  USERID=$(id -u)
+  echo Exiting due to non root user
+  exit 1
 fi
 
 # check if the uid exists as a user
 if ! getent passwd $USERID; then
-  sudo groupadd --gid $USERID igpublisher
-  sudo useradd --uid $USERID --gid igpublisher --shell /bin/bash --create-home igpublisher
+  groupadd --gid $USERID igpublisher
+  useradd --uid $USERID --gid igpublisher --shell /bin/bash --create-home igpublisher
 fi
 
 NAME=$(id -nu $USERID)

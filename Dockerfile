@@ -17,14 +17,14 @@ RUN \
     ruby-full build-essential \
     zlib1g-dev \
     jq \
-    sudo \
-    nano \
+#    sudo \
+#    nano \
     && rm -rf /var/lib/apt/lists/*
 
-RUN \
-    echo "ALL ALL = (ALL) NOPASSWD: ALL" >> /etc/sudoers \
-    && cat /etc/sudoers \
-    && visudo -c
+#RUN \
+#    echo "ALL ALL = (ALL) NOPASSWD: ALL" >> /etc/sudoers \
+#    && cat /etc/sudoers \
+#    && visudo -c
 
 RUN test -n "$PUBLISHER_TAG" \
     && gem install bundler jekyll \
