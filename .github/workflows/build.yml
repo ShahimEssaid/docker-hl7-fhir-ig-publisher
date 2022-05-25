@@ -62,10 +62,10 @@ jobs:
 
       - id: checkout
         uses: actions/checkout@v3
-        with:
-          repository: ShahimEssaid/docker-hl7-fhir-ig-publisher
-          token: ${{secrets.GH_TOKEN}}
-          ref: main
+#        with:
+#          repository: ShahimEssaid/docker-hl7-fhir-ig-publisher
+#          token: ${{secrets.GH_TOKEN}}
+#          ref: main
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v2
