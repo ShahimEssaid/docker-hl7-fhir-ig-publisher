@@ -104,50 +104,50 @@ jobs:
           set -x
           docker run --volume "$GITHUB_WORKSPACE"/sample-ig:/ig "$TEST_TAG" -ig /ig/ig.ini
 
-      -
-        name: Build and push
-        uses: docker/build-push-action@v3
-        with:
-          context: .
-          push: true
-          build-args: PUBLISHER_TAG=${{ matrix.version }}
-          tags: ${{ steps.tt.outputs.tags}}
-
-      -
-        name: Update builds.json succeeded
-        run: |
-          set -x
-          TMP_BUILDS=$(mktemp /tmp/builds.json.XXXXX)
-          jq --arg version "${{ matrix.version }}"  '
-              . as $root |
-              .build_versions |
-              if has($version) then ( $root | .build_versions[$version]["built"] |= "yes" ) else ( $root | .build_versions[$version] |= {"built": "yes"}) end
-              ' builds.json > "$TMP_BUILDS"
-          mv "$TMP_BUILDS" builds.json
-
-          git diff
-          git config --global user.name 'Shahim Essaid Workflow'
-          git config --global user.email 'shahim@essaid.com'
-          git commit -am "Actions build succeeded -GHB"
-          #cat .git/config
-          git push
-
-      -
-        name: Update builds.json failed
-        if: failure()
-        run: |
-          set -x
-          TMP_BUILDS=$(mktemp /tmp/builds.json.XXXXX)
-          jq --arg version "${{ matrix.version }}"  '
-              . as $root |
-              .build_versions |
-              if has($version) then ( $root | .build_versions[$version]["built"] |= "failed" ) else ( $root | .build_versions[$version] |= {"built": "failed"}) end
-              ' builds.json > "$TMP_BUILDS"
-          mv "$TMP_BUILDS" builds.json
-
-          git diff
-          git config --global user.name 'Shahim Essaid Workflow'
-          git config --global user.email 'shahim@essaid.com'
-          git commit -am "Actions build failed -GHB"
-          #cat .git/config
-          git push
+#      -
+#        name: Build and push
+#        uses: docker/build-push-action@v3
+#        with:
+#          context: .
+#          push: true
+#          build-args: PUBLISHER_TAG=${{ matrix.version }}
+#          tags: ${{ steps.tt.outputs.tags}}
+#
+#      -
+#        name: Update builds.json succeeded
+#        run: |
+#          set -x
+#          TMP_BUILDS=$(mktemp /tmp/builds.json.XXXXX)
+#          jq --arg version "${{ matrix.version }}"  '
+#              . as $root |
+#              .build_versions |
+#              if has($version) then ( $root | .build_versions[$version]["built"] |= "yes" ) else ( $root | .build_versions[$version] |= {"built": "yes"}) end
+#              ' builds.json > "$TMP_BUILDS"
+#          mv "$TMP_BUILDS" builds.json
+#
+#          git diff
+#          git config --global user.name 'Shahim Essaid Workflow'
+#          git config --global user.email 'shahim@essaid.com'
+#          git commit -am "Actions build succeeded -GHB"
+#          #cat .git/config
+#          git push
+#
+#      -
+#        name: Update builds.json failed
+#        if: failure()
+#        run: |
+#          set -x
+#          TMP_BUILDS=$(mktemp /tmp/builds.json.XXXXX)
+#          jq --arg version "${{ matrix.version }}"  '
+#              . as $root |
+#              .build_versions |
+#              if has($version) then ( $root | .build_versions[$version]["built"] |= "failed" ) else ( $root | .build_versions[$version] |= {"built": "failed"}) end
+#              ' builds.json > "$TMP_BUILDS"
+#          mv "$TMP_BUILDS" builds.json
+#
+#          git diff
+#          git config --global user.name 'Shahim Essaid Workflow'
+#          git config --global user.email 'shahim@essaid.com'
+#          git commit -am "Actions build failed -GHB"
+#          #cat .git/config
+#          git push

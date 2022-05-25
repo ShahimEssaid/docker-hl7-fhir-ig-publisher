@@ -18,7 +18,7 @@ RUN test -n "$PUBLISHER_TAG" \
     && mkdir /app \
     && curl -L "https://github.com/HL7/fhir-ig-publisher/releases/download/$PUBLISHER_TAG/publisher.jar" -o /app/publisher.jar
 
-COPY entrypoint.sh /app/
+COPY copy/* /app/
 
 ENTRYPOINT [ "/app/entrypoint.sh"]
 #ENTRYPOINT ls -la
