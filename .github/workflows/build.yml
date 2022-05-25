@@ -101,6 +101,7 @@ jobs:
 
       - name: Test with IG
         run: |
+          set -x
           docker run  -u $(id -u) --volume "$GITHUB_WORKSPACE"/sample-ig:/ig "$TEST_TAG" -ig /ig/ig.ini
 
       -
