@@ -2,18 +2,20 @@
 set -x
 
 echo IN ENTRY POINT
+id
 
-USERID=$(stat -c '%u' /ig)
+if [[ $(id -u) == 0 ]]; then
+  echo user is root in container but we need non root user so we use the user from the volume for permission purposes
+  USERID=$(stat -c '%u' /ig)
+  usermod -u $USERID node
+  chown -R node /home/node
+  ls -la /home/node
+  su node -c "/app/build-ig.sh $*"
+else
+  id
+  cd
+  pwd
+  cd /ig
 
-ls -la /home/node
-ls -la /app/
-
-pwd
-cd
-pwd
-cd /ig
-
-usermod -u $USERID node
-chown -R node /home/node
-
-su node -c "/app/build-ig.sh $*"
+  /app/build-ig.sh "$@"
+fi
