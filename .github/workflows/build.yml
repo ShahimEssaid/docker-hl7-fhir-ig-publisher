@@ -27,6 +27,8 @@ jobs:
           ls -la
           echo ===========  cat /etc/passwd
           cat /etc/passwd
+          echo =========== UMASK
+          umask
 
       - id: find-versions
         name: find
