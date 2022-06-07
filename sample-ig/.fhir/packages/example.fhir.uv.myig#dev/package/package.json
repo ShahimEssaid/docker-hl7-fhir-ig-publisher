@@ -2,13 +2,13 @@
   "name": "example.fhir.uv.myig",
   "tools-version": 3,
   "type": "IG",
-  "date": "20220607025648",
+  "date": "20220607030654",
   "license": "CC0-1.0",
   "canonical": "http://somewhere.org/fhir/uv/myig",
   "notForPublication": true,
   "url": "file:///ig/output",
   "title": "Your User Friendly Name for MyIG Here",
-  "description": "A brief description of what MyIG is about (probably the same text as in your readme) (built Tue, Jun 7, 2022 02:56+0000+00:00)",
+  "description": "A brief description of what MyIG is about (probably the same text as in your readme) (built Tue, Jun 7, 2022 03:06+0000+00:00)",
   "fhirVersions": [
     "4.0.1"
   ],
