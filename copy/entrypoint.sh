@@ -6,7 +6,7 @@ if [[ $(id -u) == 0 ]]; then
   # use the uid of the IG's root directory
   USERID=$(stat -c '%u' /ig)
 else
-  echo 'Exiting due to non root user. Run the container witout a user (i.e. as root).'
+  echo 'Exiting due to non root user. Run the container without a user (i.e. as root).'
   echo 'The build will be done with the same user as the user owning the ig root directory.'
   exit 1
 fi
