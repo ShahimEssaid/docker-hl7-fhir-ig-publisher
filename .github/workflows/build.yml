@@ -74,6 +74,10 @@ jobs:
       - id: checkout
         uses: actions/checkout@v3
 
+      - id: force pull to get any updates
+        run: |
+          git pull --ff-only
+
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v2
 
@@ -120,7 +124,7 @@ jobs:
               ' builds.json > "$TMP_BUILDS"
           mv "$TMP_BUILDS" builds.json
 
-          git diff
+          #git diff
           git config --global user.name 'Shahim Essaid Workflow'
           git config --global user.email 'shahim@essaid.com'
           git commit -am "Actions build succeeded -GHB"
