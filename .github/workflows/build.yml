@@ -74,7 +74,7 @@ jobs:
       - id: checkout
         uses: actions/checkout@v3
 
-      - id: force pull to get any updates
+      - id: force-pull
         run: |
           git pull --ff-only
 
