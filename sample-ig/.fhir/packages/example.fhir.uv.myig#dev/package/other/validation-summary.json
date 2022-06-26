@@ -23,11 +23,11 @@
     "errors": 0,
     "warnings": 0
   },
-  "ValueSet/valueset-fake": {
+  "Library/example-sql": {
     "errors": 0,
     "warnings": 0
   },
-  "Library/example-image": {
+  "CodeSystem/cs-fake": {
     "errors": 0,
     "warnings": 0
   },
@@ -35,19 +35,19 @@
     "errors": 1,
     "warnings": 0
   },
+  "ValueSet/valueset-fake": {
+    "errors": 0,
+    "warnings": 0
+  },
   "ValueSet/valueset-no-codesystem": {
     "errors": 0,
     "warnings": 2
-  },
-  "CodeSystem/cs-fake": {
-    "errors": 0,
-    "warnings": 0
   },
   "StructureDefinition/myObservation": {
     "errors": 0,
     "warnings": 0
   },
-  "Library/example-sql": {
+  "Library/example-image": {
     "errors": 0,
     "warnings": 0
   },

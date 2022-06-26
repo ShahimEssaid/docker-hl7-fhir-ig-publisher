@@ -34,17 +34,17 @@
       "id": "example"
     },
     {
-      "filename": "ValueSet-valueset-fake.json",
-      "resourceType": "ValueSet",
-      "id": "valueset-fake",
-      "url": "http://somewhere.org/fhir/uv/myig/ValueSet/valueset-fake",
+      "filename": "Library-example-sql.json",
+      "resourceType": "Library",
+      "id": "example-sql",
+      "url": "http://somewhere.org/fhir/uv/myig/Library/example-sql",
       "version": "0.2.0"
     },
     {
-      "filename": "Library-example-image.json",
-      "resourceType": "Library",
-      "id": "example-image",
-      "url": "http://somewhere.org/fhir/uv/myig/Library/example-image",
+      "filename": "CodeSystem-cs-fake.json",
+      "resourceType": "CodeSystem",
+      "id": "cs-fake",
+      "url": "http://somewhere.org/fhir/uv/myig/CodeSystem/cs-fake",
       "version": "0.2.0"
     },
     {
@@ -57,17 +57,17 @@
       "type": "http://somewhere.org/fhir/uv/myig/StructureDefinition/MyLogical"
     },
     {
+      "filename": "ValueSet-valueset-fake.json",
+      "resourceType": "ValueSet",
+      "id": "valueset-fake",
+      "url": "http://somewhere.org/fhir/uv/myig/ValueSet/valueset-fake",
+      "version": "0.2.0"
+    },
+    {
       "filename": "ValueSet-valueset-no-codesystem.json",
       "resourceType": "ValueSet",
       "id": "valueset-no-codesystem",
       "url": "http://somewhere.org/fhir/uv/myig/ValueSet/valueset-no-codesystem",
-      "version": "0.2.0"
-    },
-    {
-      "filename": "CodeSystem-cs-fake.json",
-      "resourceType": "CodeSystem",
-      "id": "cs-fake",
-      "url": "http://somewhere.org/fhir/uv/myig/CodeSystem/cs-fake",
       "version": "0.2.0"
     },
     {
@@ -80,10 +80,10 @@
       "type": "Observation"
     },
     {
-      "filename": "Library-example-sql.json",
+      "filename": "Library-example-image.json",
       "resourceType": "Library",
-      "id": "example-sql",
-      "url": "http://somewhere.org/fhir/uv/myig/Library/example-sql",
+      "id": "example-image",
+      "url": "http://somewhere.org/fhir/uv/myig/Library/example-image",
       "version": "0.2.0"
     },
     {
