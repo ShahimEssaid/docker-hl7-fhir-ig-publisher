@@ -34,22 +34,6 @@
       "id": "example"
     },
     {
-      "filename": "StructureDefinition-myObservation.json",
-      "resourceType": "StructureDefinition",
-      "id": "myObservation",
-      "url": "http://somewhere.org/fhir/uv/myig/StructureDefinition/myObservation",
-      "version": "0.2.0",
-      "kind": "resource",
-      "type": "Observation"
-    },
-    {
-      "filename": "CodeSystem-cs-fake.json",
-      "resourceType": "CodeSystem",
-      "id": "cs-fake",
-      "url": "http://somewhere.org/fhir/uv/myig/CodeSystem/cs-fake",
-      "version": "0.2.0"
-    },
-    {
       "filename": "Library-example-sql.json",
       "resourceType": "Library",
       "id": "example-sql",
@@ -57,11 +41,13 @@
       "version": "0.2.0"
     },
     {
-      "filename": "ValueSet-valueset-no-codesystem.json",
-      "resourceType": "ValueSet",
-      "id": "valueset-no-codesystem",
-      "url": "http://somewhere.org/fhir/uv/myig/ValueSet/valueset-no-codesystem",
-      "version": "0.2.0"
+      "filename": "StructureDefinition-MyLogical.json",
+      "resourceType": "StructureDefinition",
+      "id": "MyLogical",
+      "url": "http://somewhere.org/fhir/uv/myig/StructureDefinition/MyLogical",
+      "version": "0.2.0",
+      "kind": "logical",
+      "type": "http://somewhere.org/fhir/uv/myig/StructureDefinition/MyLogical"
     },
     {
       "filename": "Library-example-image.json",
@@ -78,22 +64,27 @@
       "version": "0.2.0"
     },
     {
-      "filename": "StructureDefinition-MyLogical.json",
-      "resourceType": "StructureDefinition",
-      "id": "MyLogical",
-      "url": "http://somewhere.org/fhir/uv/myig/StructureDefinition/MyLogical",
-      "version": "0.2.0",
-      "kind": "logical",
-      "type": "http://somewhere.org/fhir/uv/myig/StructureDefinition/MyLogical"
+      "filename": "CodeSystem-cs-fake.json",
+      "resourceType": "CodeSystem",
+      "id": "cs-fake",
+      "url": "http://somewhere.org/fhir/uv/myig/CodeSystem/cs-fake",
+      "version": "0.2.0"
     },
     {
-      "filename": "StructureDefinition-fish-patient.json",
+      "filename": "StructureDefinition-myObservation.json",
       "resourceType": "StructureDefinition",
-      "id": "fish-patient",
-      "url": "http://somewhere.org/fhir/uv/myig/StructureDefinition/fish-patient",
+      "id": "myObservation",
+      "url": "http://somewhere.org/fhir/uv/myig/StructureDefinition/myObservation",
       "version": "0.2.0",
       "kind": "resource",
-      "type": "Patient"
+      "type": "Observation"
+    },
+    {
+      "filename": "ValueSet-valueset-no-codesystem.json",
+      "resourceType": "ValueSet",
+      "id": "valueset-no-codesystem",
+      "url": "http://somewhere.org/fhir/uv/myig/ValueSet/valueset-no-codesystem",
+      "version": "0.2.0"
     },
     {
       "filename": "StructureDefinition-veterinarian.json",
@@ -103,6 +94,15 @@
       "version": "0.2.0",
       "kind": "resource",
       "type": "Practitioner"
+    },
+    {
+      "filename": "StructureDefinition-fish-patient.json",
+      "resourceType": "StructureDefinition",
+      "id": "fish-patient",
+      "url": "http://somewhere.org/fhir/uv/myig/StructureDefinition/fish-patient",
+      "version": "0.2.0",
+      "kind": "resource",
+      "type": "Patient"
     },
     {
       "filename": "StructureDefinition-ext-myExtension.json",

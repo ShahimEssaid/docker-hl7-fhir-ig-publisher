@@ -15,19 +15,11 @@
     "errors": 5,
     "warnings": 0
   },
-  "Observation/example": {
-    "errors": 0,
-    "warnings": 0
-  },
   "Binary/example": {
     "errors": 0,
     "warnings": 0
   },
-  "StructureDefinition/myObservation": {
-    "errors": 0,
-    "warnings": 0
-  },
-  "CodeSystem/cs-fake": {
+  "Observation/example": {
     "errors": 0,
     "warnings": 0
   },
@@ -35,9 +27,9 @@
     "errors": 0,
     "warnings": 0
   },
-  "ValueSet/valueset-no-codesystem": {
-    "errors": 0,
-    "warnings": 2
+  "StructureDefinition/MyLogical": {
+    "errors": 1,
+    "warnings": 0
   },
   "Library/example-image": {
     "errors": 0,
@@ -47,15 +39,23 @@
     "errors": 0,
     "warnings": 0
   },
-  "StructureDefinition/MyLogical": {
-    "errors": 1,
+  "CodeSystem/cs-fake": {
+    "errors": 0,
     "warnings": 0
   },
-  "StructureDefinition/fish-patient": {
+  "StructureDefinition/myObservation": {
+    "errors": 0,
+    "warnings": 0
+  },
+  "ValueSet/valueset-no-codesystem": {
+    "errors": 0,
+    "warnings": 2
+  },
+  "StructureDefinition/veterinarian": {
     "errors": 0,
     "warnings": 1
   },
-  "StructureDefinition/veterinarian": {
+  "StructureDefinition/fish-patient": {
     "errors": 0,
     "warnings": 1
   },
