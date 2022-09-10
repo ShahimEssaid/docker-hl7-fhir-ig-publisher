@@ -1,6 +1,6 @@
 {
   "ImplementationGuide/example.fhir.uv.myig": {
-    "errors": 27,
+    "errors": 0,
     "warnings": 0
   },
   "Bundle/h1": {
