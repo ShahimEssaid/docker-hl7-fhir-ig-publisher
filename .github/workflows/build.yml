@@ -108,6 +108,7 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           context: .
+          platforms: linux/amd64,linux/arm64
           push: true
           build-args: PUBLISHER_TAG=${{ matrix.version }}
           tags: ${{ steps.tt.outputs.tags}}
