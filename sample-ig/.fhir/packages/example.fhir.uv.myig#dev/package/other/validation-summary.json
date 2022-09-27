@@ -7,10 +7,6 @@
     "errors": 0,
     "warnings": 1
   },
-  "Binary/example": {
-    "errors": 0,
-    "warnings": 0
-  },
   "Patient/example": {
     "errors": 0,
     "warnings": 0
@@ -23,7 +19,23 @@
     "errors": 5,
     "warnings": 0
   },
+  "Binary/example": {
+    "errors": 0,
+    "warnings": 0
+  },
+  "StructureDefinition/myObservation": {
+    "errors": 0,
+    "warnings": 0
+  },
   "Library/example-image": {
+    "errors": 0,
+    "warnings": 0
+  },
+  "CodeSystem/cs-fake": {
+    "errors": 0,
+    "warnings": 0
+  },
+  "ValueSet/valueset-fake": {
     "errors": 0,
     "warnings": 0
   },
@@ -38,18 +50,6 @@
   "ValueSet/valueset-no-codesystem": {
     "errors": 0,
     "warnings": 2
-  },
-  "StructureDefinition/myObservation": {
-    "errors": 0,
-    "warnings": 0
-  },
-  "ValueSet/valueset-fake": {
-    "errors": 0,
-    "warnings": 0
-  },
-  "CodeSystem/cs-fake": {
-    "errors": 0,
-    "warnings": 0
   },
   "StructureDefinition/veterinarian": {
     "errors": 0,
