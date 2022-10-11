@@ -4,8 +4,8 @@
   "tool-version": "5.0.0-ballot",
   "tool-build": "3",
   "webUrl": "http://somewhere.org/fhir/uv/myig",
-  "date": "2022-10-07",
-  "date-time": "20221007080800+0000",
+  "date": "2022-10-11",
+  "date-time": "20221011080931+0000",
   "paths": {
     "http://somewhere.org/fhir/uv/myig/ImplementationGuide/example.fhir.uv.myig|0.2.0": "0.2.0/ImplementationGuide-example.fhir.uv.myig.html",
     "http://somewhere.org/fhir/uv/myig/ImplementationGuide/example.fhir.uv.myig": "ImplementationGuide-example.fhir.uv.myig.html",
