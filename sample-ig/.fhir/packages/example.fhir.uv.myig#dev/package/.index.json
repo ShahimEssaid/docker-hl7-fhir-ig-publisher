@@ -27,15 +27,6 @@
       "id": "example"
     },
     {
-      "filename": "StructureDefinition-myObservation.json",
-      "resourceType": "StructureDefinition",
-      "id": "myObservation",
-      "url": "http://somewhere.org/fhir/uv/myig/StructureDefinition/myObservation",
-      "version": "0.2.0",
-      "kind": "resource",
-      "type": "Observation"
-    },
-    {
       "filename": "Library-example-image.json",
       "resourceType": "Library",
       "id": "example-image",
@@ -47,6 +38,22 @@
       "resourceType": "CodeSystem",
       "id": "cs-fake",
       "url": "http://somewhere.org/fhir/uv/myig/CodeSystem/cs-fake",
+      "version": "0.2.0"
+    },
+    {
+      "filename": "StructureDefinition-myObservation.json",
+      "resourceType": "StructureDefinition",
+      "id": "myObservation",
+      "url": "http://somewhere.org/fhir/uv/myig/StructureDefinition/myObservation",
+      "version": "0.2.0",
+      "kind": "resource",
+      "type": "Observation"
+    },
+    {
+      "filename": "ValueSet-valueset-no-codesystem.json",
+      "resourceType": "ValueSet",
+      "id": "valueset-no-codesystem",
+      "url": "http://somewhere.org/fhir/uv/myig/ValueSet/valueset-no-codesystem",
       "version": "0.2.0"
     },
     {
@@ -71,13 +78,6 @@
       "version": "0.2.0",
       "kind": "logical",
       "type": "http://somewhere.org/fhir/uv/myig/StructureDefinition/MyLogical"
-    },
-    {
-      "filename": "ValueSet-valueset-no-codesystem.json",
-      "resourceType": "ValueSet",
-      "id": "valueset-no-codesystem",
-      "url": "http://somewhere.org/fhir/uv/myig/ValueSet/valueset-no-codesystem",
-      "version": "0.2.0"
     },
     {
       "filename": "StructureDefinition-veterinarian.json",
