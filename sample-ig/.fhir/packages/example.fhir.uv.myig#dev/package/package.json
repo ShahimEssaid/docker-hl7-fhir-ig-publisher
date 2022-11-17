@@ -2,19 +2,19 @@
   "name": "example.fhir.uv.myig",
   "tools-version": 3,
   "type": "IG",
-  "date": "20221107200704",
+  "date": "20221117200831",
   "license": "CC0-1.0",
   "canonical": "http://somewhere.org/fhir/uv/myig",
   "notForPublication": true,
   "url": "file:///ig/output",
   "title": "Your User Friendly Name for MyIG Here",
-  "description": "A brief description of what MyIG is about (probably the same text as in your readme) (built Mon, Nov 7, 2022 20:07+0000+00:00)",
+  "description": "A brief description of what MyIG is about (probably the same text as in your readme) (built Thu, Nov 17, 2022 20:08+0000+00:00)",
   "fhirVersions": [
     "4.0.1"
   ],
   "dependencies": {
     "hl7.fhir.r4.core": "4.0.1",
-    "hl7.terminology.r4": "4.0.0"
+    "hl7.terminology.r4": "5.0.0"
   },
   "author": "HL7 International - [Some] Work Group",
   "directories": {
