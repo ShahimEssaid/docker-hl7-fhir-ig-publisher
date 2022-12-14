@@ -1,133 +1,134 @@
 {
-  "index-version": 1,
-  "files": [
+  "index-version" : 2,
+  "files" : [
     {
-      "filename": "ImplementationGuide-example.fhir.uv.myig.json",
-      "resourceType": "ImplementationGuide",
-      "id": "example.fhir.uv.myig",
-      "url": "http://somewhere.org/fhir/uv/myig/ImplementationGuide/example.fhir.uv.myig",
-      "version": "0.2.0"
+      "filename" : "ImplementationGuide-example.fhir.uv.myig.json",
+      "resourceType" : "ImplementationGuide",
+      "id" : "example.fhir.uv.myig",
+      "url" : "http://somewhere.org/fhir/uv/myig/ImplementationGuide/example.fhir.uv.myig",
+      "version" : "0.2.0"
     },
     {
-      "filename": "Bundle-h1.json",
-      "resourceType": "Bundle",
-      "id": "h1",
-      "type": "collection"
+      "filename" : "Bundle-h1.json",
+      "resourceType" : "Bundle",
+      "id" : "h1",
+      "type" : "collection"
     },
     {
-      "filename": "Library-example.json",
-      "resourceType": "Library",
-      "id": "example",
-      "url": "http://somewhere.org/fhir/uv/myig/Library/example",
-      "version": "0.2.0"
+      "filename" : "Library-example.json",
+      "resourceType" : "Library",
+      "id" : "example",
+      "url" : "http://somewhere.org/fhir/uv/myig/Library/example",
+      "version" : "0.2.0"
     },
     {
-      "filename": "Binary-example.json",
-      "resourceType": "Binary",
-      "id": "example"
+      "filename" : "Binary-example.json",
+      "resourceType" : "Binary",
+      "id" : "example"
     },
     {
-      "filename": "Library-example-image.json",
-      "resourceType": "Library",
-      "id": "example-image",
-      "url": "http://somewhere.org/fhir/uv/myig/Library/example-image",
-      "version": "0.2.0"
+      "filename" : "Library-example-image.json",
+      "resourceType" : "Library",
+      "id" : "example-image",
+      "url" : "http://somewhere.org/fhir/uv/myig/Library/example-image",
+      "version" : "0.2.0"
     },
     {
-      "filename": "CodeSystem-cs-fake.json",
-      "resourceType": "CodeSystem",
-      "id": "cs-fake",
-      "url": "http://somewhere.org/fhir/uv/myig/CodeSystem/cs-fake",
-      "version": "0.2.0"
+      "filename" : "StructureDefinition-MyLogical.json",
+      "resourceType" : "StructureDefinition",
+      "id" : "MyLogical",
+      "url" : "http://somewhere.org/fhir/uv/myig/StructureDefinition/MyLogical",
+      "version" : "0.2.0",
+      "kind" : "logical",
+      "type" : "http://somewhere.org/fhir/uv/myig/StructureDefinition/MyLogical"
     },
     {
-      "filename": "StructureDefinition-myObservation.json",
-      "resourceType": "StructureDefinition",
-      "id": "myObservation",
-      "url": "http://somewhere.org/fhir/uv/myig/StructureDefinition/myObservation",
-      "version": "0.2.0",
-      "kind": "resource",
-      "type": "Observation"
+      "filename" : "Library-example-sql.json",
+      "resourceType" : "Library",
+      "id" : "example-sql",
+      "url" : "http://somewhere.org/fhir/uv/myig/Library/example-sql",
+      "version" : "0.2.0"
     },
     {
-      "filename": "ValueSet-valueset-no-codesystem.json",
-      "resourceType": "ValueSet",
-      "id": "valueset-no-codesystem",
-      "url": "http://somewhere.org/fhir/uv/myig/ValueSet/valueset-no-codesystem",
-      "version": "0.2.0"
+      "filename" : "ValueSet-valueset-fake.json",
+      "resourceType" : "ValueSet",
+      "id" : "valueset-fake",
+      "url" : "http://somewhere.org/fhir/uv/myig/ValueSet/valueset-fake",
+      "version" : "0.2.0"
     },
     {
-      "filename": "ValueSet-valueset-fake.json",
-      "resourceType": "ValueSet",
-      "id": "valueset-fake",
-      "url": "http://somewhere.org/fhir/uv/myig/ValueSet/valueset-fake",
-      "version": "0.2.0"
+      "filename" : "StructureDefinition-myObservation.json",
+      "resourceType" : "StructureDefinition",
+      "id" : "myObservation",
+      "url" : "http://somewhere.org/fhir/uv/myig/StructureDefinition/myObservation",
+      "version" : "0.2.0",
+      "kind" : "resource",
+      "type" : "Observation"
     },
     {
-      "filename": "Library-example-sql.json",
-      "resourceType": "Library",
-      "id": "example-sql",
-      "url": "http://somewhere.org/fhir/uv/myig/Library/example-sql",
-      "version": "0.2.0"
+      "filename" : "CodeSystem-cs-fake.json",
+      "resourceType" : "CodeSystem",
+      "id" : "cs-fake",
+      "url" : "http://somewhere.org/fhir/uv/myig/CodeSystem/cs-fake",
+      "version" : "0.2.0",
+      "content" : "complete"
     },
     {
-      "filename": "StructureDefinition-MyLogical.json",
-      "resourceType": "StructureDefinition",
-      "id": "MyLogical",
-      "url": "http://somewhere.org/fhir/uv/myig/StructureDefinition/MyLogical",
-      "version": "0.2.0",
-      "kind": "logical",
-      "type": "http://somewhere.org/fhir/uv/myig/StructureDefinition/MyLogical"
+      "filename" : "ValueSet-valueset-no-codesystem.json",
+      "resourceType" : "ValueSet",
+      "id" : "valueset-no-codesystem",
+      "url" : "http://somewhere.org/fhir/uv/myig/ValueSet/valueset-no-codesystem",
+      "version" : "0.2.0"
     },
     {
-      "filename": "StructureDefinition-veterinarian.json",
-      "resourceType": "StructureDefinition",
-      "id": "veterinarian",
-      "url": "http://somewhere.org/fhir/uv/myig/StructureDefinition/veterinarian",
-      "version": "0.2.0",
-      "kind": "resource",
-      "type": "Practitioner"
+      "filename" : "StructureDefinition-fish-patient.json",
+      "resourceType" : "StructureDefinition",
+      "id" : "fish-patient",
+      "url" : "http://somewhere.org/fhir/uv/myig/StructureDefinition/fish-patient",
+      "version" : "0.2.0",
+      "kind" : "resource",
+      "type" : "Patient"
     },
     {
-      "filename": "StructureDefinition-fish-patient.json",
-      "resourceType": "StructureDefinition",
-      "id": "fish-patient",
-      "url": "http://somewhere.org/fhir/uv/myig/StructureDefinition/fish-patient",
-      "version": "0.2.0",
-      "kind": "resource",
-      "type": "Patient"
+      "filename" : "StructureDefinition-veterinarian.json",
+      "resourceType" : "StructureDefinition",
+      "id" : "veterinarian",
+      "url" : "http://somewhere.org/fhir/uv/myig/StructureDefinition/veterinarian",
+      "version" : "0.2.0",
+      "kind" : "resource",
+      "type" : "Practitioner"
     },
     {
-      "filename": "StructureDefinition-ext-myExtension.json",
-      "resourceType": "StructureDefinition",
-      "id": "ext-myExtension",
-      "url": "http://somewhere.org/fhir/uv/myig/StructureDefinition/ext-myExtension",
-      "version": "0.2.0",
-      "kind": "complex-type",
-      "type": "Extension"
+      "filename" : "StructureDefinition-ext-myExtension.json",
+      "resourceType" : "StructureDefinition",
+      "id" : "ext-myExtension",
+      "url" : "http://somewhere.org/fhir/uv/myig/StructureDefinition/ext-myExtension",
+      "version" : "0.2.0",
+      "kind" : "complex-type",
+      "type" : "Extension"
     },
     {
-      "filename": "StructureDefinition-mypatient.json",
-      "resourceType": "StructureDefinition",
-      "id": "mypatient",
-      "url": "http://somewhere.org/fhir/uv/myig/StructureDefinition/mypatient",
-      "version": "0.2.0",
-      "kind": "resource",
-      "type": "Patient"
+      "filename" : "StructureDefinition-mypatient.json",
+      "resourceType" : "StructureDefinition",
+      "id" : "mypatient",
+      "url" : "http://somewhere.org/fhir/uv/myig/StructureDefinition/mypatient",
+      "version" : "0.2.0",
+      "kind" : "resource",
+      "type" : "Patient"
     },
     {
-      "filename": "StructureDefinition-mypractitioner.json",
-      "resourceType": "StructureDefinition",
-      "id": "mypractitioner",
-      "url": "http://somewhere.org/fhir/uv/myig/StructureDefinition/mypractitioner",
-      "version": "0.2.0",
-      "kind": "resource",
-      "type": "Practitioner"
+      "filename" : "StructureDefinition-mypractitioner.json",
+      "resourceType" : "StructureDefinition",
+      "id" : "mypractitioner",
+      "url" : "http://somewhere.org/fhir/uv/myig/StructureDefinition/mypractitioner",
+      "version" : "0.2.0",
+      "kind" : "resource",
+      "type" : "Practitioner"
     },
     {
-      "filename": "Binary-image-example.json",
-      "resourceType": "Binary",
-      "id": "image-example"
+      "filename" : "Binary-image-example.json",
+      "resourceType" : "Binary",
+      "id" : "image-example"
     }
   ]
 }

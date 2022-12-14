@@ -1,20 +1,20 @@
 ﻿{
-  "index-version": 1,
-  "files": [
+  "index-version" : 2,
+  "files" : [
     {
-      "filename": "Binary-logical-example.json",
-      "resourceType": "Binary",
-      "id": "logical-example"
+      "filename" : "Binary-logical-example.json",
+      "resourceType" : "Binary",
+      "id" : "logical-example"
     },
     {
-      "filename": "Observation-example.json",
-      "resourceType": "Observation",
-      "id": "example"
+      "filename" : "Observation-example.json",
+      "resourceType" : "Observation",
+      "id" : "example"
     },
     {
-      "filename": "Patient-example.json",
-      "resourceType": "Patient",
-      "id": "example"
+      "filename" : "Patient-example.json",
+      "resourceType" : "Patient",
+      "id" : "example"
     }
   ]
 }
