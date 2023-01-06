@@ -5,7 +5,7 @@
   "description" : "FHIR IG Base Template - foundational for use by anyone",
   "author" : "http://hl7.org/fhir",
   "canonical" : "http://fhir.org/templates/fhir.base.template",
-  "date" : "20221216180153",
-  "original-version" : "0.2.2",
+  "date" : "20221223010204",
+  "original-version" : "0.4.0",
   "version" : "current"
 }
