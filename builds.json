@@ -79,7 +79,6 @@
       "built": "yes"
     },
     "1.2.14": {
-      "built": "failed"
     },
     "1.2.15": {
       "built": "yes"
@@ -118,6 +117,7 @@
       "built": "failed"
     },
     "1.2.30": {
+      "built": "failed"
     }
   }
 }

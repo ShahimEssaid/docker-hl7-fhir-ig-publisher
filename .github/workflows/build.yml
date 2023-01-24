@@ -94,9 +94,9 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           context: .
+          build-args: PUBLISHER_TAG=${{ matrix.version }}
           load: true
           tags: ${{ env.TEST_TAG }}
-          build-args: PUBLISHER_TAG=${{ matrix.version }}
 
       - name: Test with IG
         run: |
@@ -109,12 +109,11 @@ jobs:
         with:
           context: .
           platforms: linux/amd64,linux/arm64
-          push: true
           build-args: PUBLISHER_TAG=${{ matrix.version }}
+          push: true
           tags: ${{ steps.tt.outputs.tags}}
 
-      -
-        name: Update builds.json succeeded
+      - name: Update builds.json succeeded
         run: |
           set -x
           TMP_BUILDS=$(mktemp /tmp/builds.json.XXXXX)
@@ -128,7 +127,9 @@ jobs:
           #git diff
           git config --global user.name 'Shahim Essaid Workflow'
           git config --global user.email 'shahim@essaid.com'
-          git commit -am "Actions build succeeded -GHB"
+          # we need this to make sure the .fhir changes are also committed
+          git add -A
+          git commit -m "Actions build succeeded -GHB"
           #cat .git/config
           git push
 
