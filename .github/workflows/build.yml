@@ -36,7 +36,7 @@ jobs:
           set -x 
           jq --version
           LATEST="$(curl "https://api.github.com/repos/hl7/fhir-ig-publisher/releases/latest" | jq -c '.tag_name')"
-          echo ::set-output name=latest::"$LATEST"
+          echo "latest=${LATEST}" >> $GITHUB_OUTPUT
           
           TO_BUILD="$(jq -c --argjson latest "$LATEST" '
               [.build_versions
@@ -44,7 +44,7 @@ jobs:
               (to_entries[] | select(.value.built != "yes" and .value.built != "failed").key)
               ] | sort
           ' ./builds.json)"
-          echo ::set-output name=build-versions::"$TO_BUILD"
+          echo "build-versions=${TO_BUILD}" >> $GITHUB_OUTPUT
 
   build:
     name: Build the image.
@@ -69,7 +69,7 @@ jobs:
           else
             TAGS='${{ secrets.DH_USERNAME }}/${{ secrets.DH_REPOSITORY }}:${{ matrix.version }}-latest,${{ secrets.DH_USERNAME }}/${{ secrets.DH_REPOSITORY }}:${{ matrix.version }}-'$(date "+%Y%m%d_%H%M%S")
           fi
-          echo '::set-output name=tags::'"$TAGS"
+          echo "tags=${TAGS}" >> $GITHUB_OUTPUT
 
       - id: checkout
         uses: actions/checkout@v3
