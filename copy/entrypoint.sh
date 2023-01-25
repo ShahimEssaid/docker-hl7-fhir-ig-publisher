@@ -19,4 +19,8 @@ fi
 
 NAME=$(id -nu $USERID)
 
-su $NAME -c "/app/build-ig.sh $*"
+for ARG in "$@"; do
+	ARGS="$ARGS \"$ARG\""
+done
+
+su $NAME -c "/app/build-ig.sh $ARGS"
