@@ -108,6 +108,8 @@ jobs:
       - name: Test with IG
         run: |
           set -x
+          pwd
+          ls -la
           docker run --volume  sample-ig:/ig "$TEST_TAG" -ig ig.ini
 
       -
