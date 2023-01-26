@@ -147,6 +147,7 @@ jobs:
         run: |
           set -x
           TMP_BUILDS=$(mktemp /tmp/builds.json.XXXXX)
+          NOW=$(date)
           jq --arg version "${{ matrix.version }}" --arg now "$NOW"  '
               . as $root |
               .build_versions |
