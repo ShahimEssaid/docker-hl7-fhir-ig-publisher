@@ -5,6 +5,7 @@ on:
     branches: [ main ]
     paths:
       - 'publisher-base/**'
+      - '.github/workflows/publisher-image-base.yml'
 
 concurrency: publisher-base
 

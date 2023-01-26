@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="publisher">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/publisher/sample-ig/publisher.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

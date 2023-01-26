@@ -2,11 +2,16 @@ name: IG Publisher Docker Image
 
 on:
   push:
-    branches: [ main-off ]
+    branches: [ main ]
   #schedule:
   #  - cron: '0 20 * * *'
 
-concurrency: build
+concurrency: publisher
+
+defaults:
+  run:
+    shell: bash
+    working-directory: publisher
 
 jobs:
   find-versions:
