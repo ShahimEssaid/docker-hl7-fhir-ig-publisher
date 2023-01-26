@@ -121,7 +121,7 @@ jobs:
           jq --arg version "${{ matrix.version }}" --arg now "$NOW" '
               . as $root |
               .build_versions |
-              if has($version) then ( $root | .build_versions[$version]["built"] |= "yes " + $now ) else ( $root | .build_versions[$version] |= {"built": "yes " + $now }) end 
+              if has($version) then ( $root | .build_versions[$version]["built"] |= "yes \( $now)" ) else ( $root | .build_versions[$version] |= {"built": "yes \( $now)" }) end 
               ' builds.json > "$TMP_BUILDS"
           mv "$TMP_BUILDS" builds.json
 
@@ -140,10 +140,10 @@ jobs:
         run: |
           set -x
           TMP_BUILDS=$(mktemp /tmp/builds.json.XXXXX)
-          jq --arg version "${{ matrix.version }}"  '
+          jq --arg version "${{ matrix.version }}" --arg now "$NOW"  '
               . as $root |
               .build_versions |
-              if has($version) then ( $root | .build_versions[$version]["built"] |= "failed " + $now  ) else ( $root | .build_versions[$version] |= {"built": "failed "  + $now }) end 
+              if has($version) then ( $root | .build_versions[$version]["built"] |= "failed \( $now)"   ) else ( $root | .build_versions[$version] |= {"built": "failed \( $now)"}) end 
               ' builds.json > "$TMP_BUILDS"
           mv "$TMP_BUILDS" builds.json
 
