@@ -1,4 +1,4 @@
-FROM node:18-bullseye
+FROM sessaid/ig-publisher-base:latest
 
 ARG PUBLISHER_TAG
 
