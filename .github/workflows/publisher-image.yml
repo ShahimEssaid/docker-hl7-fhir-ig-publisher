@@ -47,7 +47,7 @@ jobs:
           TO_BUILD="$(jq -c --argjson latest "$LATEST" '
               [.build_versions
               | if has($latest) then empty else $latest end,
-              (to_entries[] | select(.value.built | startswith("yes") and .value.built | startswith("failed")).key)
+              (to_entries[] | select(( .value.built | startswith("yes")) and ( .value.built | startswith("failed"))).key)
               ] | sort
           ' ./builds.json)"
           echo "build-versions=${TO_BUILD}" >> $GITHUB_OUTPUT
