@@ -1,10 +1,10 @@
-name: IG Publisher Docker Image CI
+name: IG Publisher Docker Image
 
 on:
   push:
-    branches: [ main ]
-  schedule:
-    - cron: '0 20 * * *'
+    branches: [ main-off ]
+  #schedule:
+  #  - cron: '0 20 * * *'
 
 concurrency: build
 
