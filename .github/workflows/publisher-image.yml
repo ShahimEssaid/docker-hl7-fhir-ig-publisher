@@ -100,7 +100,7 @@ jobs:
       - name: Build and export to Docker
         uses: docker/build-push-action@v3
         with:
-          context: .
+          context: publisher/
           build-args: PUBLISHER_TAG=${{ matrix.version }}
           load: true
           tags: ${{ env.TEST_TAG }}
@@ -114,7 +114,7 @@ jobs:
         name: Build and push
         uses: docker/build-push-action@v3
         with:
-          context: .
+          context: publisher/
           platforms: linux/amd64,linux/arm64
           build-args: PUBLISHER_TAG=${{ matrix.version }}
           push: true
