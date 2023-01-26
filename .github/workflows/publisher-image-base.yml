@@ -2,7 +2,7 @@ name: IG Publisher Docker Image base
 
 on:
   push:
-    branches: [ main-off ]
+    branches: [ main ]
     paths:
       - 'publisher-base/**'
       - '.github/workflows/publisher-image-base.yml'
