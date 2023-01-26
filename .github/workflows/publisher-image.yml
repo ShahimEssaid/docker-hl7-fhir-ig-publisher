@@ -66,6 +66,10 @@ jobs:
     env:
       TEST_TAG: user/app:test
     steps:
+
+      - id: checkout
+        uses: actions/checkout@v3
+
       - name: Timestamp and tags
         id: tt
         run: |
@@ -76,9 +80,6 @@ jobs:
             TAGS='${{ secrets.DH_USERNAME }}/${{ secrets.DH_REPOSITORY }}:${{ matrix.version }}-latest,${{ secrets.DH_USERNAME }}/${{ secrets.DH_REPOSITORY }}:${{ matrix.version }}-'$(date "+%Y%m%d_%H%M%S")
           fi
           echo "tags=${TAGS}" >> $GITHUB_OUTPUT
-
-      - id: checkout
-        uses: actions/checkout@v3
 
       - id: force-pull
         run: |
