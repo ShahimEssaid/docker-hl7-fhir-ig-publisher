@@ -3,6 +3,9 @@ name: IG Publisher Docker Image
 on:
   push:
     branches: [ main ]
+    paths:
+      - 'publisher/**'
+      - '.github/workflows/publisher-image.yml'
   #schedule:
   #  - cron: '0 20 * * *'
 
@@ -108,8 +111,6 @@ jobs:
       - name: Test with IG
         run: |
           set -x
-          pwd
-          ls -la
           docker run --volume  "$(pwd)/sample-ig:/ig" "$TEST_TAG" -ig ig.ini
 
       -
