@@ -110,7 +110,7 @@ jobs:
           set -x
           pwd
           ls -la
-          docker run --volume  ./sample-ig:/ig "$TEST_TAG" -ig ig.ini
+          docker run --volume  "$(pwd)/sample-ig:/ig" "$TEST_TAG" -ig ig.ini
 
       -
         name: Build and push
