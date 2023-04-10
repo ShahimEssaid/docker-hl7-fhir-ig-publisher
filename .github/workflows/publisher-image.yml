@@ -6,8 +6,8 @@ on:
     paths:
       - 'publisher/**'
       - '.github/workflows/publisher-image.yml'
-  #schedule:
-  #  - cron: '0 20 * * *'
+  schedule:
+    - cron: '0 20 * * *'
 
 concurrency: publisher
 
