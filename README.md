@@ -3,3 +3,4 @@ A Docker image for the HL7 FHIR IG Publisher at https://github.com/HL7/fhir-ig-p
 
 
 https://hub.docker.com/repository/docker/sessaid/ig-publisher
+https://github.com/FHIR/sample-ig
