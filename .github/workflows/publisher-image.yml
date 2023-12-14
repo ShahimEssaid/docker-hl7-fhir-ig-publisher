@@ -45,7 +45,7 @@ jobs:
           set -x 
           pwd
           jq --version
-          LATEST="$(curl "https://api.github.com/repos/hl7/fhir-ig-publisher/releases/latest" | jq -c '.tag_name')"
+          LATEST="$(curl --retry 2 --retry-delay 30 "https://api.github.com/repos/hl7/fhir-ig-publisher/releases/latest" | jq -c '.tag_name')"
           echo "latest=${LATEST}" >> $GITHUB_OUTPUT
           
           TO_BUILD="$(jq -c --argjson latest "$LATEST" '
