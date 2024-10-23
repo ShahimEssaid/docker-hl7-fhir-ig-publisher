@@ -26,7 +26,7 @@ jobs:
       build-versions: ${{ steps.find-versions.outputs.build-versions }}
     steps:
       - id: checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: user ids
         run: |
@@ -72,7 +72,7 @@ jobs:
     steps:
 
       - id: checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Timestamp and tags
         id: tt
