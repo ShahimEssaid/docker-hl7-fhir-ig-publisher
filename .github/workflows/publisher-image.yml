@@ -102,7 +102,7 @@ jobs:
           password: ${{ secrets.DH_TOKEN }}
 
       - name: Build and export to Docker
-        uses: docker/build-push-action@v3
+        uses: docker/build-push-action@v6
         with:
           context: publisher/
           build-args: PUBLISHER_TAG=${{ matrix.version }}
