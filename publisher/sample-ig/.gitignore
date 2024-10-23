@@ -23,6 +23,9 @@ Thumbs.db
 ################
 *.bak
 
-?/
+input-cache/schemas/
 
-input-cache/
+translations/
+
+
+/input-cache/
