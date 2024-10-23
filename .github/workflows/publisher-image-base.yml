@@ -36,4 +36,4 @@ jobs:
           context: publisher-base/
           push: true
           platforms: linux/amd64,linux/arm64
-          tags: "sessaid/ig-publisher-base:1,sessaid/ig-publisher-base:latest"
+          tags: "sessaid/ig-publisher-base:2,sessaid/ig-publisher-base:latest"

@@ -18,5 +18,5 @@ done
 DIR="$(cd -P "$(dirname "$SOURCE")" && pwd)"
 
 
-docker buildx build -t sessaid/ig-publisher-base-local:latest ..
+docker buildx build -t sessaid/ig-publisher-base:latest ..
 

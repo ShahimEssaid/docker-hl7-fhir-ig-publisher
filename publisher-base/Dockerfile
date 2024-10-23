@@ -4,11 +4,10 @@ RUN \
     apt-get update \
     && apt-get install -y \
     openjdk-17-jre-headless \
-    ruby-full build-essential \
+    ruby \
+    ruby-dev \
+    build-essential \
     zlib1g-dev \
     jq \
-    && gem install bundler jekyll \
+    && gem install --no-document bundler jekyll \
     && rm -rf /var/lib/apt/lists/* \
-
-
-
