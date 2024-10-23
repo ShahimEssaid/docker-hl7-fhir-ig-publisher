@@ -18,5 +18,5 @@ done
 DIR="$(cd -P "$(dirname "$SOURCE")" && pwd)"
 
 
-docker buildx build -t sessaid/ig-publisher-base:latest ..
+docker buildx build --progress plain --no-cache --push -t sessaid/ig-publisher-base:2 -t sessaid/ig-publisher-base:latest ..
 
