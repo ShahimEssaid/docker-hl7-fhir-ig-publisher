@@ -17,8 +17,4 @@ while [ -h "$SOURCE" ]; do
 done
 DIR="$(cd -P "$(dirname "$SOURCE")" && pwd)"
 
-if [ "$(docker ps -a -q -f name=build-ig-latest)" ]; then
- docker container start -a build-ig-latest
-else
-  docker run --pull=always --name build-ig-latest --volume .:/ig sessaid/ig-publisher:latest -ig ig.ini
-fi
+docker buildx build --progress plain --no-cache --push -t sessaid/ig-publisher-base:2 -t sessaid/ig-publisher-base:latest ..
