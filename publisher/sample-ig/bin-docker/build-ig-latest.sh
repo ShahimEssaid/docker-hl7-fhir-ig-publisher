@@ -19,5 +19,8 @@ DIR="$(cd -P "$(dirname "$SOURCE")" && pwd)"
 
 cd $DIR/..
 
-docker run --pull=always --name build-ig-latest --volume .:/ig sessaid/ig-publisher:latest -ig ig.ini
-
+if [ "$(docker ps -a -q -f name=build-ig-latest)" ]; then
+ docker container start -a build-ig-latest
+else
+  docker run --pull=always --name build-ig-latest --volume .:/ig sessaid/ig-publisher:latest -ig ig.ini
+fi
