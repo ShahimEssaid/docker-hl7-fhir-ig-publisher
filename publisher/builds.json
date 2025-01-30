@@ -287,6 +287,9 @@
     },
     "1.8.9": {
       "built": "yes Fri Jan 24 20:04:08 UTC 2025"
+    },
+    "1.8.10": {
+      "built": "failed Thu Jan 30 20:01:48 UTC 2025"
     }
   }
 }
