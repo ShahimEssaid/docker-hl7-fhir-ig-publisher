@@ -488,6 +488,9 @@
     },
     "3.0.4": {
       "built": "yes Sun Nov 15 23:40:15 UTC 2026"
+    },
+    "3.0.5": {
+      "built": "failed Sat Nov 21 01:00:33 UTC 2026"
     }
   }
 }
